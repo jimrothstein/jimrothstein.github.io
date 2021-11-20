@@ -1,3 +1,4 @@
+[blog5](/blog5)
 ## Welcome to GitHub Pages
 
 You can use the [editor on GitHub](https://github.com/jimrothstein/jimrothstein.github.io/edit/main/index.md) to maintain and preview the content for your website in Markdown files.
