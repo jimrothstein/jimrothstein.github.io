@@ -1,6 +1,6 @@
 [blog5](/blog5)
 [gist](https://gist.github.com/jimrothstein/d8de0e42f8547e3a08ee7d1f1e86fb1f)
-[poisson](/poisson_distribution)
+[experiments](/quarto-experiments)
 
 ## Welcome to GitHub Pages
 
