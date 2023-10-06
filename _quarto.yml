@@ -5,7 +5,8 @@ project:
 format:
   html:   
     code-link:  true
-  pdf:    default
+  pdf:    
+    pdf-engine: lualatex 
 ## under website:  add navbar
 website:
   title: "jim"
@@ -13,7 +14,9 @@ website:
     left: 
       -   index.qmd
       -   about.qmd
-      -   https://gist.github.com/jimrothstein/d8de0e42f8547e3a08ee7d1f1e86fb1f
+      -   text: gist  
+          href: https://gist.github.com/jimrothstein/d8de0e42f8547e3a08ee7d1f1e86fb1f
+
     
 
 ##  default?
