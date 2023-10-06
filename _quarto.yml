@@ -3,7 +3,8 @@ project:
   output-dir: docs
 
 format:
-  html:   default
+  html:   
+    code-link:  true
   pdf:    default
 ## under website:  add navbar
 website:
@@ -14,3 +15,5 @@ website:
       -   about.qmd
       -   https://gist.github.com/jimrothstein/d8de0e42f8547e3a08ee7d1f1e86fb1f
     
+
+##  default?
