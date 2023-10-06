@@ -5,3 +5,8 @@ project:
 ## under website:  add navbar
 website:
   title: "jim"
+  navbar:
+    left: 
+      -   index.qmd
+      -   about.qmd
+    
