@@ -1,3 +1,7 @@
 project:
   type: website
   output-dir: docs
+
+## under website:  add navbar
+website:
+  title: "jim"
