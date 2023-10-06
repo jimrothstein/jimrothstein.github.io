@@ -2,6 +2,9 @@ project:
   type: website
   output-dir: docs
 
+format:
+  html:   default
+  pdf:    default
 ## under website:  add navbar
 website:
   title: "jim"
