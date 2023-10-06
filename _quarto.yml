@@ -5,3 +5,9 @@ project:
 ## under website:  add navbar
 website:
   title: "jim"
+  navbar:
+    left: 
+      -   index.qmd
+      -   about.qmd
+      -   https://gist.github.com/jimrothstein/d8de0e42f8547e3a08ee7d1f1e86fb1f
+    

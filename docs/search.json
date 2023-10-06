@@ -12,5 +12,12 @@
     "title": "jim",
     "section": "Welcome to GitHub Pages",
     "text": "Welcome to GitHub Pages\nYou can use the editor on GitHub to maintain and preview the content for your website in Markdown files.\nWhenever you commit to this repository, GitHub Pages will run Jekyll to rebuild the pages in your site, from the content in your Markdown files. hi\n\nMarkdown\nMarkdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for\nSyntax highlighted code block\n\n# Header 1\n## Header 2\n### Header 3\n\n- Bulleted\n- List\n\n1. Numbered\n2. List\n\n**Bold** and _Italic_ and `Code` text\n\n[Link](url) and ![Image](src)\nFor more details see GitHub Flavored Markdown.\n\n\nJekyll Themes\nYour Pages site will use the layout and styles from the Jekyll theme you have selected in your repository settings. The name of this theme is saved in the Jekyll _config.yml configuration file.\n\n\nSupport or Contact\nHaving trouble with Pages? Check out our documentation or contact support and we’ll help you sort it out."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "jim",
+    "section": "",
+    "text": "resume blog5 gist experiments\nThis is jim’s “about.qmd”"
   }
 ]
