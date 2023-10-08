@@ -2,21 +2,24 @@ project:
   type: website
   output-dir: docs
 
-format:
-  html:   
-    code-link:  true
-  pdf:    
-    pdf-engine: lualatex 
-## under website:  add navbar
 website:
   title: "jim"
+# date: today    today is 'invalid' here; put in each .qmd file?
   navbar:
     left: 
       -   index.qmd
       -   about.qmd
       -   text: gist  
           href: https://gist.github.com/jimrothstein/d8de0e42f8547e3a08ee7d1f1e86fb1f
-
-    
-
-##  default?
+      -   href: 001_tech_reading.qmd
+          text: 001_tech_reading
+      -   href: 010_mtcars_basic.qmd
+      -   href: 030_quarto_katex_html_references.qmd
+format:
+  html:   
+    code-link:  true
+    theme: cosmo
+    css: custom.scss
+    toc: true
+  pdf:    
+    pdf-engine: lualatex 

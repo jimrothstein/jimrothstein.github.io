@@ -1,0 +1,103 @@
+---
+title: "mtcars_basic"
+date: today
+format: html
+editor: source
+editor_options: 
+  chunk_output_type: console
+execute: 
+  error: true
+---
+
+<!-- #| error:   true means display error, but DO NOT halt -->
+
+A frequent problem occurs when trying to access columns inside a data.frame.
+
+```{r}
+#| errors:  true
+head(mtcars)
+
+mtcars[1:5, c("hp")]
+```
+
+But using just col name fails.
+
+```{r}
+mtcars[1:5, hp]
+```
+
+The reason as explained in many places, such as [dplyr](https://dplyr.tidyverse.org/articles/programming.html) ....., is mtcars exisits in the environment, but not hp.
+
+```{r}
+hp
+```
+
+Again this is explained in many places, along with several ways to `fix`, for example.
+```{r}
+with(mtcars, hp)
+```
+Of course, R's help also explains this but you must be comfortable with terms like `environment` , `expression` and `parent` and what `constructing an environment` with `data` means.
+```{r}
+#| eval: false
+#| echo: true
+
+?with
+```
+
+
+Here is my own take.   It is same as above, but I find this way clearer.
+
+Let's check what is current globalenv() the the environment.   Then packages attached to search path.
+```{r}
+ls()
+search()
+```
+
+
+
+For our purposes, note there is no `hp`
+```{r}
+ls(base)
+ls("package:base") |> grep(pattern=c("mtcars"))
+
+```   
+
+Attach `mtcars` to search path  
+```{r}
+attach(mtcars)
+search()
+```
+
+Now, can find `hp`
+```{r}
+hp
+```
+
+Why?  col names are in environment one level up from  globalenv()
+```{r}
+ls(parent.env(globalenv()))
+
+```
+
+
+
+
+
+This will add mtcars into globalenv(), but not change search()
+```{r}
+# This puts data in globalenv()
+data(mtcars)
+ls()
+search()
+```
+
+Remove mtcars
+```{r}
+rm(mtcars)
+ls()
+mtcars[1:5, ]
+ls()
+```
+
+
+

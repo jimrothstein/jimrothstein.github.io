@@ -1,0 +1,49 @@
+---
+title: "030_quarto_katex_html_references.qmd"
+format: 
+  html:
+    toc: true
+    html-math-method: katex
+editor: source
+editor_options: 
+  chunk_output_type: console
+---
+
+```
+(this is fenced)
+```
+
+::: callout-note
+This is a **play** file.
+Note that there are five types of callouts, including: `note`,
+`warning`, `important`, `tip`, and `caution`.
+:::
+
+------------------------------------------------------------------------
+
+###   Katex References (html)
+-   [Katex](https://katex.org/docs/supported.html)
+-   display link only as url:   <https://katex.org/docs/supported.html>
+-   HTML with quarto (CSS, ) <https://quarto.org/docs/output-formats/html-basics.html>
+-   Equations, Tex macros <https://quarto.org/docs/authoring/markdown-basics.html#equations>
+-   <https://quarto.org/docs/guide/>
+-   <https://quarto.org/docs/publishing/github-pages.html>
+
+
+
+
+```{r}
+1 + 1
+```
+
+You can add options to executable code like this
+
+```{r}
+#| echo: false
+2 * 2
+```
+
+***
+
+###   Test Latex
+This is inline latex $\theta$;  using katex to render in html!
