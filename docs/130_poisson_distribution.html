@@ -4,8 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.3.313">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta name="dcterms.date" content="2023-10-11">
-<title>jim - mtcars_basic</title>
+<title>jim – poisson_distribution</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -87,7 +86,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit"
   }
-}</script><link rel="stylesheet" href="custom.scss">
+}</script><script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script><script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script><script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+<link rel="stylesheet" href="custom.scss">
+<link rel="stylesheet" href="styles.css">
 </head>
 <body class="nav-fixed">
 
@@ -121,12 +135,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">001_tech_reading</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./010_mtcars_basic.html" rel="" target="" aria-current="page">
+    <a class="nav-link" href="./010_mtcars_basic.html" rel="" target="">
  <span class="menu-text">mtcars_basic</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./030_quarto_katex_html_references.html" rel="" target="">
  <span class="menu-text">030_quarto_katex_html_references.qmd</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./040_not_zero.html" rel="" target="">
+ <span class="menu-text">not-zero</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./130_poisson_distribution.html" rel="" target="" aria-current="page">
+ <span class="menu-text">Poisson Distribution</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./410_bquote_example.html" rel="" target="">
+ <span class="menu-text">410_bquote</span></a>
   </li>  
 </ul>
 <div class="quarto-navbar-tools ms-auto">
@@ -137,168 +163,72 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
+   
+  <ul>
+<li><a href="#poisson-distribution" id="toc-poisson-distribution" class="nav-link active" data-scroll-target="#poisson-distribution">Poisson Distribution</a></li>
+  <li><a href="#motivating-poisson" id="toc-motivating-poisson" class="nav-link" data-scroll-target="#motivating-poisson">Motivating Poisson:</a></li>
+  </ul></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title">mtcars_basic</h1>
+<main class="content" id="quarto-document-content"><div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Note that there are five types of callouts, including: <code>note</code>, <code>warning</code>, <code>important</code>, <code>tip</code>, and <code>caution</code>.</p>
+</div>
+</div>
+<hr>
+<section id="poisson-distribution" class="level2"><h2 class="anchored" data-anchor-id="poisson-distribution">Poisson Distribution</h2>
+<ul>
+<li>SEE Taylor, binomial to Poisson</li>
+<li>BMLS</li>
+<li>PSU 414</li>
+<li>wikipedia</li>
+<li>http://www.econometricsbysimulation.com/search?q=poisson</li>
+</ul>
+<p>Let <span class="math inline">\chi</span> be rv, counting of events , 0, 1, 2 … per interval. <span class="math inline">\chi</span> might be</p>
+<ul>
+<li>counts per unit time, distance.</li>
+<li>typos per page.</li>
+<li>cars passing per unit time.</li>
+<li>ATM customers per hour.</li>
+</ul></section><section id="motivating-poisson" class="level2"><h2 class="anchored" data-anchor-id="motivating-poisson">Motivating Poisson:</h2>
+<p>Suppose, on average, receive 9 letters in mail each day. And suppose can model post office as poisson. This addresses question: how many letters will I received today? Then expect sd to be sqrt(9) and so expect actual number of letters to vary between 3 and 12 (2 sd).</p>
+<span class="math display">\begin{align*}
+Pr(X = x) = {e^{-\lambda}\lambda^x}/{x!}
+\end{align*}</span>
+<div class="cell">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">lambda</span> <span class="op">=</span> <span class="fl">9</span>    <span class="co"># rate of 1 per unit</span></span>
+<span><span class="va">x</span>  <span class="op">&lt;-</span> <span class="fl">0</span><span class="op">:</span><span class="fl">20</span>    <span class="co"># how many counts?</span></span>
+<span><span class="va">z</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Poisson.html">dpois</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, lambda <span class="op">=</span> <span class="va">lambda</span><span class="op">)</span></span>
+<span><span class="va">w</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Poisson.html">dpois</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, lambda <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">z</span>, main <span class="op">=</span><span class="st">"Poisson Distribution: upto n=20 counts, compare lambda= c(1,9)"</span>,</span>
+<span>     ylab <span class="op">=</span> <span class="st">"dpois"</span>,</span>
+<span>     xlab <span class="op">=</span> <span class="st">"counts, 1:n"</span>,</span>
+<span>     pch <span class="op">=</span> <span class="fl">19</span>,</span>
+<span>     col <span class="op">=</span> <span class="st">"plum"</span> </span>
+<span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/points.html">points</a></span><span class="op">(</span><span class="va">w</span>, pch <span class="op">=</span> <span class="fl">20</span>, col<span class="op">=</span><span class="st">"red"</span><span class="op">)</span>   <span class="co"># colors()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="130_poisson_distribution_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># plot(w, main ="Poisson Distribution: upto n=20 counts, lambda=1",</span></span>
+<span><span class="co">#      ylab = "dpois",</span></span>
+<span><span class="co">#      xlab = "counts, 1:n",</span></span>
+<span><span class="co">#      pch = 19,</span></span>
+<span><span class="co">#      col = 3,</span></span>
+<span><span class="co">#      col.axis = "5"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
-
-<div class="quarto-title-meta">
-
-    
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">October 11, 2023</p>
-    </div>
-  </div>
-  
-    
-  </div>
-  
-
-</header><!-- #| error:   true means display error, but DO NOT halt --><p>A frequent problem occurs when trying to access columns inside a data.frame.</p>
-<div class="cell" data-errors="true">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>                   mpg cyl disp  hp drat    wt  qsec vs am gear carb
-Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
-Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
-Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
-Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
-Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
-Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre>
-</div>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mtcars</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"hp"</span><span class="op">)</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 110 110  93 110 175</code></pre>
-</div>
-</div>
-<p>But using just col name fails.</p>
-<div class="cell">
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mtcars</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="va">hp</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<pre><code>Error in eval(expr, envir, enclos): object 'hp' not found</code></pre>
-</div>
-</div>
-<p>The reason as explained in many places, such as <a href="https://dplyr.tidyverse.org/articles/programming.html">dplyr</a> ….., is mtcars exisits in the environment, but not hp.</p>
-<div class="cell">
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">hp</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<pre><code>Error in eval(expr, envir, enclos): object 'hp' not found</code></pre>
-</div>
-</div>
-<p>Again this is explained in many places, along with several ways to <code>fix</code>, for example.</p>
-<div class="cell">
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/with.html">with</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">hp</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code> [1] 110 110  93 110 175 105 245  62  95 123 123 180 180 180 205 215 230  66  52
-[20]  65  97 150 150 245 175  66  91 113 264 175 335 109</code></pre>
-</div>
-</div>
-<p>Of course, R’s help also explains this but you must be comfortable with terms like <code>environment</code> , <code>expression</code> and <code>parent</code> and what <code>constructing an environment</code> with <code>data</code> means.</p>
-<div class="cell">
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="op">?</span><span class="va">with</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Here is my own take. It is same as above, but I find this way clearer.</p>
-<p>Let’s check what is current globalenv() the the environment. Then packages attached to search path.</p>
-<div class="cell">
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/ls.html">ls</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "has_annotations"</code></pre>
-</div>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/search.html">search</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] ".GlobalEnv"        "package:stats"     "package:graphics" 
-[4] "package:grDevices" "package:utils"     "package:datasets" 
-[7] "package:methods"   "Autoloads"         "package:base"     </code></pre>
-</div>
-</div>
-<p>For our purposes, note there is no <code>hp</code></p>
-<div class="cell">
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/ls.html">ls</a></span><span class="op">(</span><span class="va">base</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in ls(base): 'base' converted to character string</code></pre>
-</div>
-<div class="cell-output cell-output-error">
-<pre><code>Error in as.environment(pos): no item called "base" on the search list</code></pre>
-</div>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/ls.html">ls</a></span><span class="op">(</span><span class="st">"package:base"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">grep</a></span><span class="op">(</span>pattern<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"mtcars"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>integer(0)</code></pre>
-</div>
-</div>
-<p>Attach <code>mtcars</code> to search path</p>
-<div class="cell">
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/attach.html">attach</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/search.html">search</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code> [1] ".GlobalEnv"        "mtcars"            "package:stats"    
- [4] "package:graphics"  "package:grDevices" "package:utils"    
- [7] "package:datasets"  "package:methods"   "Autoloads"        
-[10] "package:base"     </code></pre>
-</div>
-</div>
-<p>Now, can find <code>hp</code></p>
-<div class="cell">
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">hp</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code> [1] 110 110  93 110 175 105 245  62  95 123 123 180 180 180 205 215 230  66  52
-[20]  65  97 150 150 245 175  66  91 113 264 175 335 109</code></pre>
-</div>
-</div>
-<p>Why? col names are in environment one level up from globalenv()</p>
-<div class="cell">
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/ls.html">ls</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/environment.html">parent.env</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/environment.html">globalenv</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code> [1] "am"   "carb" "cyl"  "disp" "drat" "gear" "hp"   "mpg"  "qsec" "vs"  
-[11] "wt"  </code></pre>
-</div>
-</div>
-<p>This will add mtcars into globalenv(), but not change search()</p>
-<div class="cell">
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># This puts data in globalenv()</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/ls.html">ls</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "has_annotations" "mtcars"         </code></pre>
-</div>
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/search.html">search</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code> [1] ".GlobalEnv"        "mtcars"            "package:stats"    
- [4] "package:graphics"  "package:grDevices" "package:utils"    
- [7] "package:datasets"  "package:methods"   "Autoloads"        
-[10] "package:base"     </code></pre>
-</div>
-</div>
-<p>Remove mtcars</p>
-<div class="cell">
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/rm.html">rm</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/ls.html">ls</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "has_annotations"</code></pre>
-</div>
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mtcars</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>                   mpg cyl disp  hp drat    wt  qsec vs am gear carb
-Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
-Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
-Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
-Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
-Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2</code></pre>
-</div>
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/ls.html">ls</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "has_annotations"</code></pre>
-</div>
-</div>
-
-
-
-</main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");

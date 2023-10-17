@@ -1,0 +1,21 @@
+---
+title: "Untitled"
+format: html
+editor: source
+---
+
+This is a CSS play page.
+ SEE css_examples.css for info
+
+
+:::{.test}
+#### Is this centered? yep
+:::
+
+:::{.container}
+A container?
+one item
+:::
+# Giant (h1)
+
+-   bullet point (li)

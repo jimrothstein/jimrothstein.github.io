@@ -1,0 +1,255 @@
+---
+title: "410_bquote"
+date:  today 
+pdf-engine: lualatex
+format:
+  html:
+    toc: true
+    embed-ressources: true
+    css: styles.css 
+editor_options: 
+  chunk_output_type: console
+execute: 
+  error: true
+  cache: false
+  collapse: true
+  standalone: true
+---
+
+<!--
+
+For PDF
+  pdf:
+    toc: false
+    toc_depth:  4   
+    number-sections: false
+    colorlinks: true
+    keep_tex:  false
+    include-in-header: 
+      text: |
+        \usepackage[top=.5in, bottom=.5in, left=.5in, right=.5in]{geometry}
+        \usepackage{amsmath,amssymb,amstext,amsfonts}
+        \usepackage{lipsum}
+        \usepackage{setspace}
+#format:
+#  pdf: 
+#    include-in-header: 
+
+-->
+
+
+<!--  
+  USAGE:
+  
+- quarto preview <file> --to pdf    # (opens in a viewer)
+- quarto render %	; zathura         # not quite right cli
+
+- math mode latex,  seems to work if *outside* R chunk
+$$
+x^2
+$$
+
+-->
+
+##    Like quote, bquote can quote its argument
+```{r}
+bquote(hello)                             ##  hello
+bquote("hello")                           ##  "hello"
+
+## even when x is undefined
+rm(x)
+bquote(x)                   ## x
+
+
+x = 1
+y = 2
+z = 3
+(xyz <- bquote(x + y + z))                ##    (x + y + z)
+```
+
+##  Like quote, bquote can return character, call, expression 
+```{r}
+xyz
+is.expression(xyz)
+is.character(xyz)
+typeof(xyz)
+is.call(xyz)            ## TRUE
+eval(xyz)               ## 6
+
+
+(res = (bquote(hello)))
+is.call(res)
+is.character(res)
+is.expression(res)
+is.symbol(res)          ## TRUE
+
+eval(res)               ## Error, b/c no object 
+
+
+
+(res = (bquote("hello")))
+is.call(res)
+is.character(res)       ## TRUE
+is.expression(res)
+is.symbol(res)          ## 
+
+eval(res)               ## "hello"
+
+(res = bquote(~x+y))    ## ~x+y
+is.call(res)            ## TRUE 
+purrr::is_formula(res)
+
+```
+
+##    bquote also allows parts to be quote and parts to be evaluated and substituted immediately
+```{r}
+x = 1
+
+quote(1 + .(x))   # 1 + .(x) 
+(res=bquote(1 + .(x)))  # 1 + 1
+is.call(res)
+is.expression(res)
+
+
+(res=bquote(template + .(x)))
+is.call(res)
+is.expression(res)
+
+(res=bquote(sin(.(x)))) # sin(1)
+(res=bquote(sin(.(x+1)))) # sin(1)
+is.call(res)
+is.expression(res)
+
+(res=bquote(sin(.(x+1)), splice=TRUE)) # sin(1)
+```
+##    SPLICE in R 4.0.0  (multiple expresssions)
+https://stackoverflow.com/a/60689381/5057251
+https://stackoverflow.com/q/72039909/5057251   (multiple ways)
+```{r}
+```   
+
+# bquote:   takes an R expression, evaluates .(), returns expression
+(unevaluated)
+rm(x)
+
+##    compare quote and bquote
+```{r}
+
+# bquote - step by step ,   .() operator
+bquote(1+2)       # 1 + 2
+
+two = 2
+bquote(1 + two)   # 1 + two
+bquote(hello)
+bquote(1 + .(two))   # 1 + 2   (substitution, not eval)
+
+eval(bquote(1 + two)) # 3 
+eval(bquote(1 + .(two)))   # 3 
+
+```
+
+###-----------------------------
+
+## (stole from https://github.com/klmr/box)
+subject="bquote"
+mod_name="base"
+bquote(help(topic = .(subject), package = .(mod_name)))
+eval( bquote(help(topic = .(subject), package = .(mod_name))))
+
+subject="quote"
+eval( bquote(help(topic = .(subject), package = .(mod_name))))
+##
+
+d = 2
+bquote(a+b+c + .(d))       ## a + b + c + 2
+
+##  
+theta = pi/4
+bquote(sin(1 + .(theta)))  ## sin(1 + 0.7853...)
+eval(bquote(sin(1 + .(theta))))  ## 0.977
+
+##
+z= bquote(sin(1 + .(theta)))  ## sin(1 + 0.7853...)
+typeof(z)                     ## "language"
+is.call(z)                    ## T
+eval(z)                       ## 0.977
+
+```   
+
+```{r}
+x = 5 
+bquote(x == .(x))
+bquote(.(x))
+
+## from ethz documentation, takes expr, returns lang ob
+default <- 1
+(z = bquote( function(x, y = .(default)) x+y ))
+
+typeof(z)
+is.call(z)  #T
+is.expression(z) #F 
+is.symbol(z) #F
+a = 2
+plot(1:10, a*(1:10), main = bquote(a == .(a)))
+
+
+(angle  = 1:10)
+(variable = as.name("angle"))             ## variable is now a symbol
+
+is.character(variable)  # FALSE
+
+is.name(variable)   # TRUE
+is.symbol(variable) # TRUE
+typeof(variable)    # TRUE
+
+##
+expr = quote(x+y)
+is.expression(expr) # FALSE
+is.call(expr)      # TRUE
+str(expr)
+
+#-----------------------------
+##  quasiquotation:  insert .... into an expr template; return expression
+pdf()
+
+
+plot(x = 1:10, y=91:100)
+
+bquote(x= .(variable))
+bquote(
+  plot(x = .(variable), 
+       y = sin(.(variable)))
+  )
+
+dev.off()
+
+```
+
+```{r}
+## A variable to pass in
+cor <- -.321
+cor2 <- '-.321'
+
+par(mfrow = c(1, 2))
+plot(1:10, 1:10, main = bquote("Hello" ~ r[xy] == .(cor) ~ "and" ~ B^2))
+plot(1:10, 1:10, main = bquote("Hello" ~ r[xy] == .(cor2) ~ "and" ~ B^2))
+```
+
+```{r}
+bquote("Hello")
+bquote("Hello" ~ 3)
+bquote("Hello" ~ r[xy])
+x = 2
+bquote("hello" ~ .(x))
+bquote("x" ~ .(x))
+bquote("The answer "  ~.(x))
+bquote(x == .(x))
+if (F) bquote(x = .(x))
+
+# want 1 + 2
+y = 1
+x=2
+bquote( function(x, y = .(y)) x+y )
+eval(bquote( function(x, y = .(y)) x+y ))
+eval(eval(bquote( function(x, y = .(y)) x+y )))
+```

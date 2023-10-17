@@ -40,5 +40,103 @@
     "title": "030_quarto_katex_html_references.qmd",
     "section": "",
     "text": "(this is fenced)\n\n\n\n\n\n\nNote\n\n\n\nThis is a play file. Note that there are five types of callouts, including: note, warning, important, tip, and caution.\n\n\n\nKatex References (html)\n\nKatex\ndisplay link only as url: https://katex.org/docs/supported.html\n\nHTML with quarto (CSS, ) https://quarto.org/docs/output-formats/html-basics.html\n\nEquations, Tex macros https://quarto.org/docs/authoring/markdown-basics.html#equations\n\nhttps://quarto.org/docs/guide/\nhttps://quarto.org/docs/publishing/github-pages.html\n\n\n1 + 1\n\n[1] 2\n\n\nYou can add options to executable code like this\n\n\n[1] 4\n\n\nTest Latex\nThis is inline latex \\theta; using katex to render in html!"
+  },
+  {
+    "objectID": "410_bquote_example.html",
+    "href": "410_bquote_example.html",
+    "title": "410_bquote",
+    "section": "",
+    "text": "bquote(hello)                             ##  hello\n\nhello\n\nbquote(\"hello\")                           ##  \"hello\"\n\n[1] \"hello\"\n\n## even when x is undefined\nrm(x)\n\nWarning in rm(x): object 'x' not found\n\nbquote(x)                   ## x\n\nx\n\nx = 1\ny = 2\nz = 3\n(xyz &lt;- bquote(x + y + z))                ##    (x + y + z)\n\nx + y + z"
+  },
+  {
+    "objectID": "410_bquote_example.html#like-quote-bquote-can-quote-its-argument",
+    "href": "410_bquote_example.html#like-quote-bquote-can-quote-its-argument",
+    "title": "410_bquote",
+    "section": "",
+    "text": "bquote(hello)                             ##  hello\n\nhello\n\nbquote(\"hello\")                           ##  \"hello\"\n\n[1] \"hello\"\n\n## even when x is undefined\nrm(x)\n\nWarning in rm(x): object 'x' not found\n\nbquote(x)                   ## x\n\nx\n\nx = 1\ny = 2\nz = 3\n(xyz &lt;- bquote(x + y + z))                ##    (x + y + z)\n\nx + y + z"
+  },
+  {
+    "objectID": "410_bquote_example.html#like-quote-bquote-can-return-character-call-expression",
+    "href": "410_bquote_example.html#like-quote-bquote-can-return-character-call-expression",
+    "title": "410_bquote",
+    "section": "Like quote, bquote can return character, call, expression",
+    "text": "Like quote, bquote can return character, call, expression\n\nxyz\n\nx + y + z\n\nis.expression(xyz)\n\n[1] FALSE\n\nis.character(xyz)\n\n[1] FALSE\n\ntypeof(xyz)\n\n[1] \"language\"\n\nis.call(xyz)            ## TRUE\n\n[1] TRUE\n\neval(xyz)               ## 6\n\n[1] 6\n\n(res = (bquote(hello)))\n\nhello\n\nis.call(res)\n\n[1] FALSE\n\nis.character(res)\n\n[1] FALSE\n\nis.expression(res)\n\n[1] FALSE\n\nis.symbol(res)          ## TRUE\n\n[1] TRUE\n\neval(res)               ## Error, b/c no object \n\nError in eval(res): object 'hello' not found\n\n(res = (bquote(\"hello\")))\n\n[1] \"hello\"\n\nis.call(res)\n\n[1] FALSE\n\nis.character(res)       ## TRUE\n\n[1] TRUE\n\nis.expression(res)\n\n[1] FALSE\n\nis.symbol(res)          ## \n\n[1] FALSE\n\neval(res)               ## \"hello\"\n\n[1] \"hello\"\n\n(res = bquote(~x+y))    ## ~x+y\n\n~x + y\n\nis.call(res)            ## TRUE \n\n[1] TRUE\n\npurrr::is_formula(res)\n\n[1] TRUE"
+  },
+  {
+    "objectID": "410_bquote_example.html#bquote-also-allows-parts-to-be-quote-and-parts-to-be-evaluated-and-substituted-immediately",
+    "href": "410_bquote_example.html#bquote-also-allows-parts-to-be-quote-and-parts-to-be-evaluated-and-substituted-immediately",
+    "title": "410_bquote",
+    "section": "bquote also allows parts to be quote and parts to be evaluated and substituted immediately",
+    "text": "bquote also allows parts to be quote and parts to be evaluated and substituted immediately\n\nx = 1\n\nquote(1 + .(x))   # 1 + .(x) \n\n1 + .(x)\n\n(res=bquote(1 + .(x)))  # 1 + 1\n\n1 + 1\n\nis.call(res)\n\n[1] TRUE\n\nis.expression(res)\n\n[1] FALSE\n\n(res=bquote(template + .(x)))\n\ntemplate + 1\n\nis.call(res)\n\n[1] TRUE\n\nis.expression(res)\n\n[1] FALSE\n\n(res=bquote(sin(.(x)))) # sin(1)\n\nsin(1)\n\n(res=bquote(sin(.(x+1)))) # sin(1)\n\nsin(2)\n\nis.call(res)\n\n[1] TRUE\n\nis.expression(res)\n\n[1] FALSE\n\n(res=bquote(sin(.(x+1)), splice=TRUE)) # sin(1)\n\nsin(2)"
+  },
+  {
+    "objectID": "410_bquote_example.html#splice-in-r-4.0.0-multiple-expresssions",
+    "href": "410_bquote_example.html#splice-in-r-4.0.0-multiple-expresssions",
+    "title": "410_bquote",
+    "section": "SPLICE in R 4.0.0 (multiple expresssions)",
+    "text": "SPLICE in R 4.0.0 (multiple expresssions)\nhttps://stackoverflow.com/a/60689381/5057251 https://stackoverflow.com/q/72039909/5057251 (multiple ways)"
+  },
+  {
+    "objectID": "410_bquote_example.html#compare-quote-and-bquote",
+    "href": "410_bquote_example.html#compare-quote-and-bquote",
+    "title": "410_bquote",
+    "section": "compare quote and bquote",
+    "text": "compare quote and bquote\n\n# bquote - step by step ,   .() operator\nbquote(1+2)       # 1 + 2\n\n1 + 2\n\ntwo = 2\nbquote(1 + two)   # 1 + two\n\n1 + two\n\nbquote(hello)\n\nhello\n\nbquote(1 + .(two))   # 1 + 2   (substitution, not eval)\n\n1 + 2\n\neval(bquote(1 + two)) # 3 \n\n[1] 3\n\neval(bquote(1 + .(two)))   # 3 \n\n[1] 3\n\n\n###—————————–"
+  },
+  {
+    "objectID": "410_bquote_example.html#stole-from-httpsgithub.comklmrbox",
+    "href": "410_bquote_example.html#stole-from-httpsgithub.comklmrbox",
+    "title": "410_bquote",
+    "section": "(stole from https://github.com/klmr/box)",
+    "text": "(stole from https://github.com/klmr/box)\nsubject=“bquote” mod_name=“base” bquote(help(topic = .(subject), package = .(mod_name))) eval( bquote(help(topic = .(subject), package = .(mod_name))))\nsubject=“quote” eval( bquote(help(topic = .(subject), package = .(mod_name)))) ##\nd = 2 bquote(a+b+c + .(d)) ## a + b + c + 2"
+  },
+  {
+    "objectID": "410_bquote_example.html#section",
+    "href": "410_bquote_example.html#section",
+    "title": "410_bquote",
+    "section": "",
+    "text": "theta = pi/4 bquote(sin(1 + .(theta))) ## sin(1 + 0.7853…) eval(bquote(sin(1 + .(theta)))) ## 0.977"
+  },
+  {
+    "objectID": "410_bquote_example.html#section-1",
+    "href": "410_bquote_example.html#section-1",
+    "title": "410_bquote",
+    "section": "",
+    "text": "z= bquote(sin(1 + .(theta))) ## sin(1 + 0.7853…) typeof(z) ## “language” is.call(z) ## T eval(z) ## 0.977\n\n::: {.cell}\n\n```{.r .cell-code}\nx = 5 \nbquote(x == .(x))\n\nx == 5\n\nbquote(.(x))\n\n[1] 5\n\n## from ethz documentation, takes expr, returns lang ob\ndefault &lt;- 1\n(z = bquote( function(x, y = .(default)) x+y ))\n\nfunction(x, y = 1) x + y\n\ntypeof(z)\n\n[1] \"language\"\n\nis.call(z)  #T\n\n[1] TRUE\n\nis.expression(z) #F \n\n[1] FALSE\n\nis.symbol(z) #F\n\n[1] FALSE\n\na = 2\nplot(1:10, a*(1:10), main = bquote(a == .(a)))\n\n\n\n(angle  = 1:10)\n\n [1]  1  2  3  4  5  6  7  8  9 10\n\n(variable = as.name(\"angle\"))             ## variable is now a symbol\n\nangle\n\nis.character(variable)  # FALSE\n\n[1] FALSE\n\nis.name(variable)   # TRUE\n\n[1] TRUE\n\nis.symbol(variable) # TRUE\n\n[1] TRUE\n\ntypeof(variable)    # TRUE\n\n[1] \"symbol\"\n\n##\nexpr = quote(x+y)\nis.expression(expr) # FALSE\n\n[1] FALSE\n\nis.call(expr)      # TRUE\n\n[1] TRUE\n\nstr(expr)\n\n language x + y\n\n#-----------------------------\n##  quasiquotation:  insert .... into an expr template; return expression\npdf()\n\n\nplot(x = 1:10, y=91:100)\n\nbquote(x= .(variable))\n\nError in bquote(x = .(variable)): unused argument (x = .(variable))\n\nbquote(\n  plot(x = .(variable), \n       y = sin(.(variable)))\n  )\n\nplot(x = angle, y = sin(angle))\n\ndev.off()\n\npng \n  2 \n\n:::\n\n## A variable to pass in\ncor &lt;- -.321\ncor2 &lt;- '-.321'\n\npar(mfrow = c(1, 2))\nplot(1:10, 1:10, main = bquote(\"Hello\" ~ r[xy] == .(cor) ~ \"and\" ~ B^2))\nplot(1:10, 1:10, main = bquote(\"Hello\" ~ r[xy] == .(cor2) ~ \"and\" ~ B^2))\n\n\n\n\n\nbquote(\"Hello\")\n\n[1] \"Hello\"\n\nbquote(\"Hello\" ~ 3)\n\n\"Hello\" ~ 3\n\nbquote(\"Hello\" ~ r[xy])\n\n\"Hello\" ~ r[xy]\n\nx = 2\nbquote(\"hello\" ~ .(x))\n\n\"hello\" ~ 2\n\nbquote(\"x\" ~ .(x))\n\n\"x\" ~ 2\n\nbquote(\"The answer \"  ~.(x))\n\n\"The answer \" ~ 2\n\nbquote(x == .(x))\n\nx == 2\n\nif (F) bquote(x = .(x))\n\n# want 1 + 2\ny = 1\nx=2\nbquote( function(x, y = .(y)) x+y )\n\nfunction(x, y = 1) x + y\n\neval(bquote( function(x, y = .(y)) x+y ))\n\nfunction(x, y = .(y)) x+y\n\neval(eval(bquote( function(x, y = .(y)) x+y )))\n\nfunction(x, y = .(y)) x+y"
+  },
+  {
+    "objectID": "130_poisson_distribution.html",
+    "href": "130_poisson_distribution.html",
+    "title": "jim",
+    "section": "",
+    "text": "Note\n\n\n\nNote that there are five types of callouts, including: note, warning, important, tip, and caution."
+  },
+  {
+    "objectID": "130_poisson_distribution.html#poisson-distribution",
+    "href": "130_poisson_distribution.html#poisson-distribution",
+    "title": "jim",
+    "section": "Poisson Distribution",
+    "text": "Poisson Distribution\n\nSEE Taylor, binomial to Poisson\nBMLS\nPSU 414\nwikipedia\nhttp://www.econometricsbysimulation.com/search?q=poisson\n\nLet \\chi be rv, counting of events , 0, 1, 2 … per interval. \\chi might be\n\ncounts per unit time, distance.\ntypos per page.\ncars passing per unit time.\nATM customers per hour."
+  },
+  {
+    "objectID": "130_poisson_distribution.html#motivating-poisson",
+    "href": "130_poisson_distribution.html#motivating-poisson",
+    "title": "jim",
+    "section": "Motivating Poisson:",
+    "text": "Motivating Poisson:\nSuppose, on average, receive 9 letters in mail each day. And suppose can model post office as poisson. This addresses question: how many letters will I received today? Then expect sd to be sqrt(9) and so expect actual number of letters to vary between 3 and 12 (2 sd).\n\\begin{align*}\nPr(X = x) = {e^{-\\lambda}\\lambda^x}/{x!}\n\\end{align*}\n\nlambda = 9    # rate of 1 per unit\nx  &lt;- 0:20    # how many counts?\nz  &lt;- dpois(x = x, lambda = lambda)\nw  &lt;- dpois(x = x, lambda = 1)\nplot(z, main =\"Poisson Distribution: upto n=20 counts, compare lambda= c(1,9)\",\n     ylab = \"dpois\",\n     xlab = \"counts, 1:n\",\n     pch = 19,\n     col = \"plum\" \n)\npoints(w, pch = 20, col=\"red\")   # colors()\n\n\n\n# plot(w, main =\"Poisson Distribution: upto n=20 counts, lambda=1\",\n#      ylab = \"dpois\",\n#      xlab = \"counts, 1:n\",\n#      pch = 19,\n#      col = 3,\n#      col.axis = \"5\""
+  },
+  {
+    "objectID": "020_CSS_play.html",
+    "href": "020_CSS_play.html",
+    "title": "Untitled",
+    "section": "",
+    "text": "This is a CSS play page. SEE css_examples.css for info\n\nIs this centered? yep\n\n\nA container? one item\n\n\nGiant (h1)\n\nbullet point (li)"
+  },
+  {
+    "objectID": "040_not_zero.html",
+    "href": "040_not_zero.html",
+    "title": "not-zero",
+    "section": "",
+    "text": "I knew that 0 becomes FALSE, when logical is required.\n\nCodeif(0) print(\"FALSE\")\n\n\nAnd I knew that 1 becomes TRUE\n\nCodeif(1) print(\"TRUE\")\n\n[1] \"TRUE\"\n\n\nBut I did not know:\n\nCodeif(!0) print(\"TRUE\")\n\n[1] \"TRUE\""
   }
 ]

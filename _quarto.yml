@@ -15,6 +15,10 @@ website:
           text: 001_tech_reading
       -   href: 010_mtcars_basic.qmd
       -   href: 030_quarto_katex_html_references.qmd
+      -   href: 040_not_zero.qmd
+      -   href: 130_poisson_distribution.qmd
+      -   href: 410_bquote_example.qmd
+
 format:
   html:   
     code-link:  true

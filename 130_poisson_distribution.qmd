@@ -1,0 +1,79 @@
+---
+format:
+    html:
+      toc: true
+      html-math-method: katex
+      css: styles.css
+editor_options: 
+  chunk_output_type: console
+editor: 
+  markdown: 
+    wrap: 72
+execute:
+  error:  true
+  warning:  true
+  collapse:   true
+  standalone: true
+---
+
+
+::: callout-note
+Note that there are five types of callouts, including: `note`,
+`warning`, `important`, `tip`, and `caution`.
+:::
+
+------------------------------------------------------------------------
+
+## Poisson Distribution
+
+- SEE Taylor, binomial to Poisson 
+- BMLS 
+- PSU 414 
+- wikipedia 
+- http://www.econometricsbysimulation.com/search?q=poisson
+
+Let $\chi$ be rv, counting of events , 0, 1, 2 ... per interval. $\chi$ might
+be 
+
+- counts per unit time, distance. 
+- typos per page. 
+- cars passing  per unit time. 
+- ATM customers per hour.
+
+## Motivating Poisson:
+
+Suppose, on average, receive 9 letters in mail each day. And suppose can model
+post office as poisson. This addresses question: how many letters will I
+received today? Then expect sd to be sqrt(9) and so expect actual number of
+letters to vary between 3 and 12 (2 sd).
+
+
+```{=tex}
+\begin{align*}
+Pr(X = x) = {e^{-\lambda}\lambda^x}/{x!}
+\end{align*}
+```
+
+```{r} 
+lambda = 9    # rate of 1 per unit
+x  <- 0:20    # how many counts?
+z  <- dpois(x = x, lambda = lambda)
+w  <- dpois(x = x, lambda = 1)
+plot(z, main ="Poisson Distribution: upto n=20 counts, compare lambda= c(1,9)",
+     ylab = "dpois",
+     xlab = "counts, 1:n",
+     pch = 19,
+     col = "plum" 
+)
+points(w, pch = 20, col="red")   # colors()
+
+# plot(w, main ="Poisson Distribution: upto n=20 counts, lambda=1",
+#      ylab = "dpois",
+#      xlab = "counts, 1:n",
+#      pch = 19,
+#      col = 3,
+#      col.axis = "5"
+
+
+```
+

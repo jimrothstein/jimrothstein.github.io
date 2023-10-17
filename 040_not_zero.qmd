@@ -1,0 +1,31 @@
+---
+title: "not-zero"
+author: "jim"
+date: "5/22/2021"
+categories: [try-catch]
+format: 
+  html:
+    code-fold: true
+---
+
+
+I knew that `0` becomes FALSE, when logical is required.
+```{r}
+#| label: fig-airquality
+#| collapse: true
+#| warning: false
+
+if(0) print("FALSE")
+```
+
+And I knew that `1` becomes TRUE
+```{r}
+if(1) print("TRUE")
+```
+
+But I did not know:
+```{r}
+if(!0) print("TRUE")
+```
+
+
