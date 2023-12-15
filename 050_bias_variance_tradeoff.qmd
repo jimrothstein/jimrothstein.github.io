@@ -1,0 +1,37 @@
+---
+title: Bias-Variance Tradeoff 
+date: last-modified
+# Quarto requires title, if want date to appear
+# ~/.config/kickstart/skeleton/skeleton.qmd
+---
+#   TAGS:   
+
+Recently, I have begun working  through some of the simpler
+ML/algorithms/models, such as KNN, logistical regression.   The bias-variance
+tradeoff regularly appears in the materials I am reading.
+
+I do have a vague notion about overfitting, for example "perfecting" a
+training set by addding addition parameters (dimensions?).   When model is run
+on testing data, of course, it does not work as well.
+
+Seems plausible to me, but something bothers me.   I have worked through the
+mathematical derviations of bias-tradeoff a few times (here, here, and here),
+understand some not all of the math, yet continue to walk about realizing I
+still do understand this at an intutive level.
+
+Is bias-variance tradeoff like the Uncertainty Principle ?
+
+$$
+\Delta{x}*\Delta{p} = \frac{h}{2*pi}$$
+
+This [article](https://ryxcommar.com/2019/07/14/on-moving-from-statistics-to-machine-learning-the-final-stage-of-grief/) greatly helped: 
+
+There  are b_hat people and y_yat people.   This shed some light.
+
+This diagram from wikipedia turned the lightbulb on:
+<https://en.wikipedia.org/wiki/Bias_of_an_estimator>
+
+
+![sketch2](https://upload.wikimedia.org/wikipedia/commons/e/e5/Example_when_estimator_bias_is_good.svg)
+
+vim:linebreak:nospell:nowrap:cul tw=78 fo=tqlnrc foldcolumn=1 cc=+1

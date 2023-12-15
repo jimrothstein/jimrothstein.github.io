@@ -36,12 +36,12 @@ As of \today
 
 ###	Algorithms & ML
 
--  Akalin <https://compgenomr.github.io/book/> - very good
+-  Akalin <https://compgenomr.github.io/book/> - very good, genomics
 -  [Berkeley, excellent glossary:](https://www.stat.berkeley.edu/~stark/SticiGui/Text/gloss.htm)
 -	 Berkeley CRASH  ML <https://mlberkeley.substack.com/p/part-1>
 - Bishop (2006)  Ch1 nice intro: <https://www.microsoft.com/en-us/research/uploads/prod/2006/01/Bishop-Pattern-Recognition-and-Machine-Learning-2006.pdf>
 -  Breiman,   2 cultures: <https://www.jstor.org/stable/2676681>
--  Chollet, Deep Learning for R (not online, no pdf)  python:
+-  Chollet, Deep Learning for R (not online, no pdf)  python:   
   <https://docs.google.com/viewer?a=v&pid=sites&srcid=dW10LmVkdS5wa3xzbmxwfGd4Ojc1ODc1ODY2OTZiOTUzOGQ>
 -  Compeau:  
     -	great ideas book! <http://compeau.cbd.cmu.edu/>  
@@ -57,17 +57,20 @@ As of \today
 -  [Gagolewski Lightweight ML with R](https://lmlcr.gagolewski.com/) iPad, PDF
 - Goodfellow et al: <https://www.deeplearningbook.org/> ideas
 - Higgens "Practical R Info?" 
+  Higgens, <https://bookdown.org/pdr_higgins/rmrwr/> easy to read, range of
+  topics (~cookbook)
 - Kaplan  2023 <https://mdsr-book.github.io/mdsr3e/> (tidyverse, parsnip,
   links to wikip for all stats)
 - Kaplan  2017, 2E <https://dtkaplan.github.io/SM2-bookdown/>
 - Kaplan  2021, 2E, Data <https://dtkaplan.github.io/DataComputingEbook/> see
 - Kaplan  2020, Calculus with R <https://dtkaplan.github.io/RforCalculus/index.html> mosaic and mosaicCalc packages (fitting to curves)
   ML, chapter 18, plus interesting other chapters
-- Lindholm, "Machine Learning:  A first course for engineers" PDF  more math <http://smlbook.org/>
+- Lindholm, "Machine Learning:  A first course for engineers" PDF  more math <http://smlbook.org/> <http://smlbook.org/book/sml-book-draft-latest.pdf>
 - Matloff (Prob book) <https://github.com/matloff/probstatbook/blob/master/ProbStatBookW21.pdf> \
   SEE 15.2 for logistic; var transform
 - mcelreath: <https://github.com/rmcelreath/stat_rethinking_2022> (videos)
 - Molnar <https://christophm.github.io/interpretable-ml-book/> Ch 5.2 logistical regression  (explanations!) 
+- Oehlert: 
 - Random Services <https://www.randomservices.org/random/dist/Transformations.html> 
 - Siegrist: <https://stats.libretexts.org/Bookshelves/Probability_Theory/Probability_Mathematical_Statistics_and_Stochastic_Processes_(Siegrist)/>
 - Thomas,  Math for ML  ... good lin alg, but quickly gets advanced.  <https://gwthomas.github.io/docs/math4ml.pdf>
@@ -79,14 +82,6 @@ As of \today
 - [Scott, DS with R, Gentle Intro ](https://bookdown.org/jgscott/DSGI/)
 - Kazdan |  normal equations, linear alg<https://www2.math.upenn.edu/~kazdan/312S14/>
 - Kazdan, many good references: <https://www2.math.upenn.edu/~kazdan/>
-
-#### ML R Packages
-
-- Keras
-- caret
-- torch
-- STAN
-
 
 #### Intro to Linear Alg & Models, 
 
@@ -157,12 +152,14 @@ only)
 - HTTP Testing (book) <https://books.ropensci.org/http-testing/>
 - [Deisenroth, et al  Math for ML ] <https://mml-book.github.io/book/mml-book.pdf>
 - [Chan, Intro Probability for DS](https://probability4datascience.com/index.html)
+- [Meier, ANOVA + MIXED EFFECTS]<https://people.math.ethz.ch/~meier/teaching/anova/index.html>
 
 
 ### R - always learn something new:
   *  Burns, R Inferno (not intro book)
   *  Peng, <https://bookdown.org/rdpeng/rprogdatascience/>
 	*  Peng, <https://bookdown.org/rdpeng/RProgDA/>
+  *  Peng <https://jhu-advdatasci.github.io/2018/>
   *  Hadley, <https://r4ds.had.co.nz/index.html>
   *	 [Jennybc (book)](https://stat545.com/index.html) [wtf](https://rstats.wtf/) [git](https://happygitwithr.com/)
   *  Gillespie, Lovelace (2016) <https://bookdown.org/csgillespie/efficientR/>
