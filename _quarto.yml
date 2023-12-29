@@ -1,9 +1,18 @@
 project:
   type: website
   output-dir: docs
+  preview:
+    port: 4200
+    browser: true
+    navigate: true
 
 website:
-  title: "jim"
+  title: "Notes To Myself"
+  description: "Assorted breadcrumbs, ideas that may not be of use"
+  repo-url: https://github.com/jimrothstein/
+    #repo-actions: [source, edit, issue]
+    #site-url: "https://crumplab.com/GPTAttentionPerformance"
+
 # date: today    today is 'invalid' here; put in each .qmd file?
   navbar:
     left: 
@@ -25,5 +34,3 @@ format:
     theme: cosmo
     css: custom.scss
     toc: true
-      #  pdf:    
-      # pdf-engine: lualatex 
