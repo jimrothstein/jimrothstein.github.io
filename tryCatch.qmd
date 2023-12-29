@@ -1,0 +1,48 @@
+---
+title: "try-catch"
+author: "jim"
+date: "5/22/2021"
+categories: [try-catch]
+format: 
+  html:
+    code-fold: true
+---
+
+I seem to forget exact punctuation in R and need a few tries to get it right.
+**TryCatch** is one example!
+
+The trick is use formatting so things wrong will stick out.   Rahul !so 12193779 has
+excellent example:  Note the use of curly braces {} as well as parenthesis ()
+https://stackoverflow.com/q/12193779/5057251
+https://stackoverflow.com/a/53876586/5057251
+```{r}
+#| label: fig-airquality
+#| collapse: true
+#| warning: false
+
+log_calculator <- function(x){
+    tryCatch(
+        expr = {
+            message(log(x))
+            message("Successfully executed the log(x) call.")
+        },
+        error = function(e){
+            message('Caught an error!')
+            print(e)
+        },
+        warning = function(w){
+            message('Caught an warning!')
+            print(w)
+        },
+        finally = {
+            message('All done, quitting.')
+        }
+    )    
+}
+
+log_calculator(10)
+log_calculator("10")
+
+
+
+```
