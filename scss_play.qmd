@@ -1,0 +1,68 @@
+---
+title: "quarto-experiments"
+image: flower.png    
+#theme:
+#  light: cosmo
+#  dark: [cosmo, theme-dark.scss]
+# css: styles.css
+#    css: css_examples.css
+editor_options: 
+  chunk_output_type: console
+about:
+  template:  trestles
+  image-shape: round
+  image-width: 5 em
+  links:
+#    - icon: twitter
+#      text: twitter
+#      href: https://twitter.com
+    - icon: github
+      text: Github
+      href: https://github.com/jimrothstein
+  id: ppc
+---
+  
+###   Web Page for Jim Rothstein
+-   First attempt at collection of misc R notes 
+-   Also w-i-p, as I learn SCSS.
+
+###   R code
+```{r}
+1 + 1
+```
+
+:::{#ppc}
+
+partial page content
+
+-   index.qmd
+-   about: triggers layout
+-   'landing page'
+-   jolla theme (colors)
+    
+:::
+
+
+:::{class=text-primary}
+Is this blue?
+:::
+
+<!--
+
+
+::: aside
+<center>This is a Quarto Presentation. To learn more, visit <https://quarto.org>.</center>
+
+<center><span style = 'font-size: 60%;'>*If you see mistakes or want to suggest changes, please create an [issue](https://github.com/UCSB-MEDS/customizing-quarto-websites/issues) on the source repository.*</span></center>
+:::
+
+:::{#hero-heading}
+<div class="body-text">this is body-text </div>
+<div class=".custom-title">this is custom-title</div>
+
+This is a Quarto website.
+
+To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+:::
+    
+-->

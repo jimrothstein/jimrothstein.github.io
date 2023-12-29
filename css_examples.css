@@ -1,0 +1,40 @@
+html {
+/*  background-color: #00539f; */
+}
+body {
+  width: 200px;
+  margin: 0 auto;
+/*  background-color: #ff9500;*/
+  padding: 0 20px 20px 20px;
+  /* border: 5px solid black;*/
+}
+
+.test h4 {
+  text-align: center;
+  color: blue;
+  size: 12px;
+}
+
+h1 {
+  font-size: 60px;
+  text-align: center;
+}
+
+p,
+li {
+  font-size: 16px;
+  line-height: 2;
+  letter-spacing: 1px;
+  color: green;
+}
+
+.container {
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.item {
+    width: 10em;
+}

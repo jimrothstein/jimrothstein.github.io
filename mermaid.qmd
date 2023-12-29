@@ -1,0 +1,56 @@
+---
+title: "About"
+editor_options: 
+  chunk_output_type: console
+---
+
+About this site
+
+
+Just a few things *Mermaid* can do
+```{mermaid}
+flowchart LR
+  A[Hard edge] --> B(Round edge)
+  B --> C{Decision}
+  C --> D[Result one]
+  C --> E[Result two]
+```
+
+:::{.callout-note}
+Example of callout.   
+`note`, `tip`, `warning`, `caution`, and `important`.
+:::
+
+
+```{mermaid }
+flowchart BT 
+    .globalenv --> env1 -->env2 --> ... 
+    
+```
+::: {.border style="color:orange"}
+This content can be styled with a border
+:::
+
+::: {.foo style="color:forestgreen; font-size: 9px"}
+<!-- `:::` begins a Div -->
+A 9px font.
+:::
+ 
+::: {.foo2 style="color:forestgreen; font-size: 18px"}
+<!-- `:::` begins a Div -->
+A 18px font.
+:::
+
+
+```{mermaid}
+%% This is a comment.
+stateDiagram-v2
+    [*] --> Top
+    Top --> env2
+    env2 --> env1
+    env1 --> .globalenv
+    .globalenv --> [*]
+    
+   %% env1 --> env2
+    %%.globalenv --> env1
+```
