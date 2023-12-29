@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.3.450">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>jim - Tech Reading</title>
+<title>jim - 030_quarto_katex_html_references.qmd</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -87,7 +87,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><link rel="stylesheet" href="custom.scss">
+}</script><script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script><script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script><script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+<link rel="stylesheet" href="custom.scss">
 </head>
 <body class="nav-fixed">
 
@@ -117,7 +131,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">gist</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./001_tech_reading.html" rel="" target="" aria-current="page">
+    <a class="nav-link" href="./001_tech_reading.html" rel="" target="">
  <span class="menu-text">001_tech_reading</span></a>
   </li>  
   <li class="nav-item">
@@ -125,7 +139,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">mtcars_basic</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./030_quarto_katex_html_references.html" rel="" target="">
+    <a class="nav-link active" href="./030_quarto_katex_html_references.html" rel="" target="" aria-current="page">
  <span class="menu-text">030_quarto_katex_html_references.qmd</span></a>
   </li>  
   <li class="nav-item">
@@ -156,13 +170,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
    
   <ul>
-<li><a href="#algorithms-ml" id="toc-algorithms-ml" class="nav-link active" data-scroll-target="#algorithms-ml">Algorithms &amp; ML</a></li>
-  <li><a href="#exit" id="toc-exit" class="nav-link" data-scroll-target="#exit">exit</a></li>
+<li><a href="#katex-references-html" id="toc-katex-references-html" class="nav-link active" data-scroll-target="#katex-references-html">Katex References (html)</a></li>
+  <li><a href="#test-latex" id="toc-test-latex" class="nav-link" data-scroll-target="#test-latex">Test Latex</a></li>
   </ul></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title">Tech Reading</h1>
+<h1 class="title">030_quarto_katex_html_references.qmd</h1>
 </div>
 
 
@@ -175,139 +189,47 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
-</header><!--
-template has \small font embedded
-!pandoc % -f markdown --template ~/dotfiles/proposed_template.latex -V geometry:margin=0.4in --toc-depth=4 -V toc-title="Reading" -o out.pdf ; zathura out.pdf
---><!--
-urls:  for github markdown 
-  [link](/uri "title"),  OR
-  <url>
---><!--
-LINK:  [TEXT portion](URL portion)
-        <url>
-
-  \url{nytimes.com}
-  \href{url}{text}   url itself does NOT print
-  \href{nytimes.com}{Click: NY Times}
-
-pandoc: 
-  file <- "001_R_stats_tech_reading.md"
-  !pandoc % -t latex -V linkcolor:blue -V fontsize=10pt -V geometry:margin=0.4in -o ~/Downloads/print_and_delete/reading.pdf 
-  -V toc-title="Read"   is ignored.
-
---><p>As of </p>
-<section id="algorithms-ml" class="level3"><h3 class="anchored" data-anchor-id="algorithms-ml">Algorithms &amp; ML</h3>
-<ul>
-<li>Akalin <a href="https://compgenomr.github.io/book/" class="uri">https://compgenomr.github.io/book/</a> - very good, genomics</li>
-<li><a href="https://www.stat.berkeley.edu/~stark/SticiGui/Text/gloss.htm">Berkeley, excellent glossary:</a></li>
-<li>Berkeley CRASH ML <a href="https://mlberkeley.substack.com/p/part-1" class="uri">https://mlberkeley.substack.com/p/part-1</a>
-</li>
-<li>Bishop (2006) Ch1 nice intro: <a href="https://www.microsoft.com/en-us/research/uploads/prod/2006/01/Bishop-Pattern-Recognition-and-Machine-Learning-2006.pdf" class="uri">https://www.microsoft.com/en-us/research/uploads/prod/2006/01/Bishop-Pattern-Recognition-and-Machine-Learning-2006.pdf</a>
-</li>
-<li>Breiman, 2 cultures: <a href="https://www.jstor.org/stable/2676681" class="uri">https://www.jstor.org/stable/2676681</a>
-</li>
-<li>Chollet, Deep Learning for R (not online, no pdf) python:<br><a href="https://docs.google.com/viewer?a=v&amp;pid=sites&amp;srcid=dW10LmVkdS5wa3xzbmxwfGd4Ojc1ODc1ODY2OTZiOTUzOGQ" class="uri">https://docs.google.com/viewer?a=v&amp;pid=sites&amp;srcid=dW10LmVkdS5wa3xzbmxwfGd4Ojc1ODc1ODY2OTZiOTUzOGQ</a>
-</li>
-<li>Compeau:
-<ul>
-<li>great ideas book! <a href="http://compeau.cbd.cmu.edu/" class="uri">http://compeau.cbd.cmu.edu/</a><br>
-</li>
-<li>
-<a href="http://compeau.cbd.cmu.edu/programming-for-lovers/" class="uri">http://compeau.cbd.cmu.edu/programming-for-lovers/</a> cmu - ch 8, 9 esp collinear.<br>
-</li>
-</ul>
-</li>
-<li>Boehmke Hands on ML | <a href="https://bradleyboehmke.github.io/HOML/" class="uri">https://bradleyboehmke.github.io/HOML/</a> Ch 4,5</li>
-<li>Bohm Statistics for Physics <a href="https://www-library.desy.de/preparch/books/vstatmp_engl.pdf" class="uri">https://www-library.desy.de/preparch/books/vstatmp_engl.pdf</a> change of variables (SEE 3.4.1, density as volume)</li>
-<li>Chan, Stanley <a href="https://probability4datascience.com/index.html" class="uri">https://probability4datascience.com/index.html</a> more math and uses Likelikhood</li>
-<li>Davidson http://qed.econ.queensu.ca/ETM/etm-info.html</li>
-<li>Deisenroth, Faiesel et al | Math4ML some intution; linear trans, distributions <a href="https://mml-book.github.io/book/mml-book.pdf" class="uri">https://mml-book.github.io/book/mml-book.pdf</a> linear alg book, regression (Ch 9), nice intro to (<span class="math inline">\(\Omega,\mathcal{A}, P\)</span>)</li>
-<li>related videos <a href="https://www.youtube.com/playlist?list=PLkxomGYFWp67infnvPmEcqyQqk0q6ntrY" class="uri">https://www.youtube.com/playlist?list=PLkxomGYFWp67infnvPmEcqyQqk0q6ntrY</a>
-</li>
-<li>
-<a href="https://lmlcr.gagolewski.com/">Gagolewski Lightweight ML with R</a> iPad, PDF</li>
-<li>Goodfellow et al: <a href="https://www.deeplearningbook.org/" class="uri">https://www.deeplearningbook.org/</a> ideas</li>
-<li>Higgens “Practical R Info?” Higgens, <a href="https://bookdown.org/pdr_higgins/rmrwr/" class="uri">https://bookdown.org/pdr_higgins/rmrwr/</a> easy to read, range of topics (~cookbook)</li>
-<li>Kaplan 2023 <a href="https://mdsr-book.github.io/mdsr3e/" class="uri">https://mdsr-book.github.io/mdsr3e/</a> (tidyverse, parsnip, links to wikip for all stats)</li>
-<li>Kaplan 2017, 2E <a href="https://dtkaplan.github.io/SM2-bookdown/" class="uri">https://dtkaplan.github.io/SM2-bookdown/</a>
-</li>
-<li>Kaplan 2021, 2E, Data <a href="https://dtkaplan.github.io/DataComputingEbook/" class="uri">https://dtkaplan.github.io/DataComputingEbook/</a> see</li>
-<li>Kaplan 2020, Calculus with R <a href="https://dtkaplan.github.io/RforCalculus/index.html" class="uri">https://dtkaplan.github.io/RforCalculus/index.html</a> mosaic and mosaicCalc packages (fitting to curves) ML, chapter 18, plus interesting other chapters</li>
-<li>Lindholm, “Machine Learning: A first course for engineers” PDF more math <a href="http://smlbook.org/" class="uri">http://smlbook.org/</a> <a href="http://smlbook.org/book/sml-book-draft-latest.pdf" class="uri">http://smlbook.org/book/sml-book-draft-latest.pdf</a>
-</li>
-<li>Matloff (Prob book) <a href="https://github.com/matloff/probstatbook/blob/master/ProbStatBookW21.pdf" class="uri">https://github.com/matloff/probstatbook/blob/master/ProbStatBookW21.pdf</a><br>
-SEE 15.2 for logistic; var transform</li>
-<li>mcelreath: <a href="https://github.com/rmcelreath/stat_rethinking_2022" class="uri">https://github.com/rmcelreath/stat_rethinking_2022</a> (videos)</li>
-<li>Molnar <a href="https://christophm.github.io/interpretable-ml-book/" class="uri">https://christophm.github.io/interpretable-ml-book/</a> Ch 5.2 logistical regression (explanations!)</li>
-<li>Oehlert:</li>
-<li>Random Services <a href="https://www.randomservices.org/random/dist/Transformations.html" class="uri">https://www.randomservices.org/random/dist/Transformations.html</a>
-</li>
-<li>Siegrist: <a href="https://stats.libretexts.org/Bookshelves/Probability_Theory/Probability_Mathematical_Statistics_and_Stochastic_Processes_(Siegrist)/" class="uri">https://stats.libretexts.org/Bookshelves/Probability_Theory/Probability_Mathematical_Statistics_and_Stochastic_Processes_(Siegrist)/</a>
-</li>
-<li>Thomas, Math for ML … good lin alg, but quickly gets advanced. <a href="https://gwthomas.github.io/docs/math4ml.pdf" class="uri">https://gwthomas.github.io/docs/math4ml.pdf</a>
-</li>
-<li>UCLA: Mixed Models - intro: <a href="https://stats.oarc.ucla.edu/other/mult-pkg/introduction-to-linear-mixed-models/" class="uri">https://stats.oarc.ucla.edu/other/mult-pkg/introduction-to-linear-mixed-models/</a>
-</li>
-<li>Vasishth: <a href="https://vasishth.github.io/bayescogsci/book/ch-reg.html#sec-logistic" class="uri">https://vasishth.github.io/bayescogsci/book/ch-reg.html#sec-logistic</a>
-</li>
-<li>Venables http://web.mit.edu/r_v3.4.1/R-intro.pdf (SEE models chapter)</li>
-<li>Wiki: <a href="https://en.wikipedia.org/wiki/Generalized_linear_model#Binary_data" class="uri">https://en.wikipedia.org/wiki/Generalized_linear_model#Binary_data</a>, not easy but through</li>
-<li>SciLearn</li>
-<li><a href="https://bookdown.org/jgscott/DSGI/">Scott, DS with R, Gentle Intro</a></li>
-<li>Kazdan | normal equations, linear alg<a href="https://www2.math.upenn.edu/~kazdan/312S14/" class="uri">https://www2.math.upenn.edu/~kazdan/312S14/</a>
-</li>
-<li>Kazdan, many good references: <a href="https://www2.math.upenn.edu/~kazdan/" class="uri">https://www2.math.upenn.edu/~kazdan/</a>
-</li>
-</ul>
-<section id="intro-to-linear-alg-models" class="level4"><h4 class="anchored" data-anchor-id="intro-to-linear-alg-models">Intro to Linear Alg &amp; Models,</h4>
-<ul>
-<li>Kuiper, Shonda: simple, clear: video: <a href="https://www.youtube.com/watch?v=jQkK0XMrAdM" class="uri">https://www.youtube.com/watch?v=jQkK0XMrAdM</a>
-</li>
-<li>Race, Shaina gentle intro to lin alg:, <a href="https://shainarace.github.io/LinearAlgebra/index.html" class="uri">https://shainarace.github.io/LinearAlgebra/index.html</a>
-</li>
-<li>Thomas, Garrett, Math for ML, Berkeley https://gwthomas.github.io/docs/math4ml.pdf</li>
-<li>Bendixcarstensen.com, with R &amp; matrix models (practical; try not use api pkg) http://www.bendixcarstensen.com/APC/linalg-notes-BxC.pdf</li>
-<li>Rafael genomics - Chapter 4 matrix (his older stuff is better, but not best organization)</li>
-<li>Rafael, Book2: <a href="http://rafalab.dfci.harvard.edu/dsbook-part-2/" class="uri">http://rafalab.dfci.harvard.edu/dsbook-part-2/</a> (2020?), esp Linear Models and ML chapters</li>
-<li>Gallier, advanced linear alg <a href="https://www.seas.upenn.edu/~cis5150/linalg-I.pdf" class="uri">https://www.seas.upenn.edu/~cis5150/linalg-I.pdf</a>
-</li>
-</ul></section><section id="logistic-regression-binary-response" class="level4"><h4 class="anchored" data-anchor-id="logistic-regression-binary-response">Logistic Regression (binary response)</h4>
-<p><span class="math display">\[  
-\Pr(y) \sim \binom{n}{y}\theta^y(1-\theta)^{n-y}
-\]</span> <span class="math display">\[
-\Pr(y=1)=\theta=\text{logit}^{-1}(\beta_0+\beta_1x_1+\beta_2x_2+...+\beta_7x_7)
-\]</span></p>
-<ul>
-<li>Prerequisite: Ease going from quantile function to CDF, and back.</li>
-<li>Difference: binomial variable, y, =1 and Pr(Y=1)</li>
-<li>Difference: p(y=m | x) conditional class probability vs p(y | x), where m repsents a ‘class’, given x</li>
-<li>Model y vs model log-odds (y)</li>
-<li>Reason for modeling mean</li>
-<li>Transformations of RV</li>
-</ul>
-<p>SEE :</p>
-<ul>
-<li><a href="https://en.wikipedia.org/wiki/Quantile_function" class="uri">https://en.wikipedia.org/wiki/Quantile_function</a></li>
-<li>Vasishth,</li>
-<li>Interpretable ML, Chapter 5.2</li>
-<li><a href="https://stats.stackexchange.com/questions/374452/family-of-glm-represents-the-distribution-of-the-response-variable-or-residuals/374461#374461" class="uri">https://stats.stackexchange.com/questions/374452/family-of-glm-represents-the-distribution-of-the-response-variable-or-residuals/374461#374461</a></li>
-<li><a href="https://www.theanalysisfactor.com/link-functions-and-errors-in-logistic-regression/" class="uri">https://www.theanalysisfactor.com/link-functions-and-errors-in-logistic-regression/</a></li>
-<li><a href="https://www.randomservices.org/random/dist/Transformations.html" class="uri">https://www.randomservices.org/random/dist/Transformations.html</a></li>
-</ul></section><section id="quarto-css-scss" class="level4"><h4 class="anchored" data-anchor-id="quarto-css-scss">QUARTO &amp; CSS | SCSS</h4>
-<div class="postbox">
-<ul>
-<li>READ discussions: <a href="https://github.com/quarto-dev/quarto-cli" class="uri">https://github.com/quarto-dev/quarto-cli</a>
-</li>
-</ul>
+</header><pre><code>(this is fenced)</code></pre>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This is a <strong>play</strong> file. Note that there are five types of callouts, including: <code>note</code>, <code>warning</code>, <code>important</code>, <code>tip</code>, and <code>caution</code>.</p>
+</div>
+</div>
+<hr>
+<section id="katex-references-html" class="level3"><h3 class="anchored" data-anchor-id="katex-references-html">Katex References (html)</h3>
 <ul>
-<li><a href="https://github.com/mine-cetinkaya-rundel/test-website" class="uri">https://github.com/mine-cetinkaya-rundel/test-website</a></li>
-<li>Rstudio community | SCSS: <a href="https://community.rstudio.com/t/quarto-markdown-list-and-blank-line/160693/4" class="uri">https://community.rstudio.com/t/quarto-markdown-list-and-blank-line/160693/4</a>
+<li><a href="https://katex.org/docs/supported.html">Katex</a></li>
+<li>display link only as url: <a href="https://katex.org/docs/supported.html" class="uri">https://katex.org/docs/supported.html</a>
 </li>
-</ul></section></section><section id="exit" class="level3"><h3 class="anchored" data-anchor-id="exit">exit</h3>
+<li>HTML with quarto (CSS, ) <a href="https://quarto.org/docs/output-formats/html-basics.html" class="uri">https://quarto.org/docs/output-formats/html-basics.html</a>
+</li>
+<li>Equations, Tex macros <a href="https://quarto.org/docs/authoring/markdown-basics.html#equations" class="uri">https://quarto.org/docs/authoring/markdown-basics.html#equations</a>
+</li>
+<li><a href="https://quarto.org/docs/guide/" class="uri">https://quarto.org/docs/guide/</a></li>
+<li><a href="https://quarto.org/docs/publishing/github-pages.html" class="uri">https://quarto.org/docs/publishing/github-pages.html</a></li>
+</ul>
 <div class="cell">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/knit_exit.html">knit_exit</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">1</span> <span class="op">+</span> <span class="fl">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2</code></pre>
 </div>
+</div>
+<p>You can add options to executable code like this</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4</code></pre>
+</div>
+</div>
+<hr></section><section id="test-latex" class="level3"><h3 class="anchored" data-anchor-id="test-latex">Test Latex</h3>
+<p>This is inline latex <span class="math inline">\theta</span>; using katex to render in html!</p>
 
 
 </section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">

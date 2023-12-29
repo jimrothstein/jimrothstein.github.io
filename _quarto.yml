@@ -25,5 +25,5 @@ format:
     theme: cosmo
     css: custom.scss
     toc: true
-  pdf:    
-    pdf-engine: lualatex 
+      #  pdf:    
+      # pdf-engine: lualatex 

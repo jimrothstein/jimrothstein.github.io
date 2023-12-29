@@ -22,7 +22,8 @@ still do understand this at an intutive level.
 Is bias-variance tradeoff like the Uncertainty Principle ?
 
 $$
-\Delta{x}*\Delta{p} = \frac{h}{2*pi}$$
+\Delta{x}*\Delta{p} = \frac{h}{2*pi}
+$$
 
 This [article](https://ryxcommar.com/2019/07/14/on-moving-from-statistics-to-machine-learning-the-final-stage-of-grief/) greatly helped: 
 
