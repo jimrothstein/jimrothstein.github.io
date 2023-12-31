@@ -1,7 +1,12 @@
 ---
-title: "About"
+title: "Mermaid"
+categories: 
+  - mermaid
+  - CSS
 editor_options: 
   chunk_output_type: console
+date: "9/2/2023"
+date-modified: "12/30/2023"
 ---
 
 About this site

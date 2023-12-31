@@ -1,4 +1,5 @@
 ---
+categories: [poisson]
 format:
     html:
       toc: true

@@ -1,6 +1,7 @@
 ---
 title: "quarto-experiments"
 image: flower.png    
+categories: [scss]
 #theme:
 #  light: cosmo
 #  dark: [cosmo, theme-dark.scss]

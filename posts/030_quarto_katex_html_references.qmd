@@ -7,6 +7,8 @@ format:
 editor: source
 editor_options: 
   chunk_output_type: console
+date: "9/1/2023"
+date-modified: today
 ---
 
 ```

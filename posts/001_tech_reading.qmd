@@ -1,5 +1,6 @@
 ---
 title: "Tech Reading"
+date: "12/1/2023"
 ---
 \footnotesize
 
