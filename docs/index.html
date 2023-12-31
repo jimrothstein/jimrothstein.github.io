@@ -6,6 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="jim">
+<meta name="dcterms.date" content="2023-11-30">
 
 <title>Notes To Myself</title>
 <style>
@@ -20,40 +22,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -64,6 +32,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-listing/list.min.js"></script>
+<script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -93,7 +63,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script>
 
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-listing .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-date','listing-title','listing-author',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
+      
+      searchColumns: ["listing-date","listing-title","listing-author"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="custom.scss">
 </head>
@@ -117,43 +118,43 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
     <a class="nav-link active" href="./index.html" rel="" target="" aria-current="page">
- <span class="menu-text">Welcome to GitHub Pages</span></a>
+ <span class="menu-text">First Post</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./about.html" rel="" target="">
- <span class="menu-text">about.html</span></a>
+ <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="https://gist.github.com/jimrothstein/d8de0e42f8547e3a08ee7d1f1e86fb1f" rel="" target="">
  <span class="menu-text">gist</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./001_tech_reading.html" rel="" target="">
+    <a class="nav-link" href="./001_tech_reading.qmd" rel="" target="">
  <span class="menu-text">001_tech_reading</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./010_mtcars_basic.html" rel="" target="">
- <span class="menu-text">mtcars_basic</span></a>
+    <a class="nav-link" href="./010_mtcars_basic.qmd" rel="" target="">
+ <span class="menu-text">010_mtcars</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./030_quarto_katex_html_references.html" rel="" target="">
- <span class="menu-text">030_quarto_katex_html_references.qmd</span></a>
+  <li class="nav-item compact">
+    <a class="nav-link" href="./030_quarto_katex_html_references.qmd" rel="" target="">
+ <span class="menu-text"></span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./040_not_zero.html" rel="" target="">
- <span class="menu-text">not-zero</span></a>
+  <li class="nav-item compact">
+    <a class="nav-link" href="./040_not_zero.qmd" rel="" target="">
+ <span class="menu-text"></span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./130_poisson_distribution.html" rel="" target="">
- <span class="menu-text">Poisson Distribution</span></a>
+  <li class="nav-item compact">
+    <a class="nav-link" href="./130_poisson_distribution.qmd" rel="" target="">
+ <span class="menu-text"></span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./410_bquote_example.html" rel="" target="">
- <span class="menu-text">410_bquote</span></a>
+  <li class="nav-item compact">
+    <a class="nav-link" href="./410_bquote_example.qmd" rel="" target="">
+ <span class="menu-text"></span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./050_bias_variance_tradeoff.html" rel="" target="">
- <span class="menu-text">Bias-Variance Tradeoff</span></a>
+  <li class="nav-item compact">
+    <a class="nav-link" href="./050_bias_variance_tradeoff.qmd" rel="" target="">
+ <span class="menu-text"></span></a>
   </li>  
 </ul>
             <div class="quarto-navbar-tools ms-auto">
@@ -171,58 +172,225 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#welcome-to-github-pages" id="toc-welcome-to-github-pages" class="nav-link active" data-scroll-target="#welcome-to-github-pages">Welcome to GitHub Pages</a>
-  <ul class="collapse">
-  <li><a href="#markdown" id="toc-markdown" class="nav-link" data-scroll-target="#markdown">Markdown</a></li>
-  <li><a href="#jekyll-themes" id="toc-jekyll-themes" class="nav-link" data-scroll-target="#jekyll-themes">Jekyll Themes</a></li>
-  <li><a href="#support-or-contact" id="toc-support-or-contact" class="nav-link" data-scroll-target="#support-or-contact">Support or Contact</a></li>
-  </ul></li>
+  <li><a href="#first-post" id="toc-first-post" class="nav-link active" data-scroll-target="#first-post">First Post</a></li>
   </ul>
 </nav>
-    </div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(14)</span></div><div class="category" data-category="try-catch">try-catch <span class="quarto-category-count">(2)</span></div></div></div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 
 
-<p><a href="https://jimrothstein.github.com/resume.html">resume</a> <a href="./blog5">blog5</a> <a href="https://gist.github.com/jimrothstein/d8de0e42f8547e3a08ee7d1f1e86fb1f">gist</a> <a href="./quarto-experiments">experiments</a></p>
-<section id="welcome-to-github-pages" class="level2">
-<h2 class="anchored" data-anchor-id="welcome-to-github-pages">Welcome to GitHub Pages</h2>
-<p>You can use the <a href="https://github.com/jimrothstein/jimrothstein.github.io/edit/main/index.md">editor on GitHub</a> to maintain and preview the content for your website in Markdown files.</p>
-<p>Whenever you commit to this repository, GitHub Pages will run <a href="https://jekyllrb.com/">Jekyll</a> to rebuild the pages in your site, from the content in your Markdown files. hi</p>
-<section id="markdown" class="level3">
-<h3 class="anchored" data-anchor-id="markdown">Markdown</h3>
-<p>Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>Syntax highlighted code block</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu"># Header 1</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">## Header 2</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">### Header 3</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Bulleted</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>List</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Numbered</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>List</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>**Bold** and _Italic_ and <span class="in">`Code`</span> text</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Link</span><span class="co">](url)</span> and <span class="al">![Image](src)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>For more details see <a href="https://guides.github.com/features/mastering-markdown/">GitHub Flavored Markdown</a>.</p>
-</section>
-<section id="jekyll-themes" class="level3">
-<h3 class="anchored" data-anchor-id="jekyll-themes">Jekyll Themes</h3>
-<p>Your Pages site will use the layout and styles from the Jekyll theme you have selected in your <a href="https://github.com/jimrothstein/jimrothstein.github.io/settings/pages">repository settings</a>. The name of this theme is saved in the Jekyll <code>_config.yml</code> configuration file.</p>
-</section>
-<section id="support-or-contact" class="level3">
-<h3 class="anchored" data-anchor-id="support-or-contact">Support or Contact</h3>
-<p>Having trouble with Pages? Check out our <a href="https://docs.github.com/categories/github-pages-basics/">documentation</a> or <a href="https://support.github.com/contact">contact support</a> and we’ll help you sort it out.</p>
+<section id="first-post" class="level3">
+<h3 class="anchored" data-anchor-id="first-post">First Post</h3>
+
 
 
 </section>
-</section>
 
-</main> <!-- /main -->
+<div class="quarto-listing quarto-listing-container-table" id="listing-listing">
+<div class="listing-actions-group">
+   <div class="input-group input-group-sm quarto-listing-sort">
+     <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
+     <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
+       <option value="" disabled="" selected="" hidden="">Order By</option>
+       <option value="index" data-direction="asc">Default</option>
+         <option value="listing-date-sort" data-direction="asc">
+          Date - Oldest
+        </option>
+         <option value="listing-date-sort" data-direction="desc">
+          Date - Newest
+        </option>
+         <option value="listing-title-sort" data-direction="asc">
+          Title
+        </option>
+         <option value="listing-author" data-direction="asc">
+          Author
+        </option>
+     </select>
+  </div>
+    <div class="input-group input-group-sm quarto-listing-filter">
+      <span class="input-group-text"><i class="bi bi-search"></i></span>
+      <input type="text" class="search form-control" placeholder="Filter">
+    </div>
+</div>
+
+<table class="quarto-listing-table table">
+<thead>
+<tr>
+<th>
+<a class="sort" data-sort="listing-date-sort" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Date</a>
+</th>
+<th>
+<a class="sort" data-sort="listing-title-sort" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Title</a>
+</th>
+<th>
+<a class="sort" data-sort="listing-author" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Author</a>
+</th>
+</tr>
+</thead>
+<tbody class="list">
+<tr data-index="0" data-listing-file-modified-sort="1702675358004" data-listing-reading-time-sort="14" data-listing-title-sort="Tech Reading" data-listing-filename-sort="001_tech_reading.qmd">
+<td>
+<span class="listing-date">undefined</span>
+</td>
+<td>
+<a href="./posts/001_tech_reading.html" class="title listing-title">Tech Reading</a>
+</td>
+<td>
+<span class="listing-author"></span>
+</td>
+</tr>
+<tr data-index="1" data-listing-date-sort="1703923200000" data-listing-file-modified-sort="1696718628788" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-title-sort="mtcars_basic" data-listing-filename-sort="010_mtcars_basic.qmd">
+<td>
+<span class="listing-date">Dec 30, 2023</span>
+</td>
+<td>
+<a href="./posts/010_mtcars_basic.html" class="title listing-title">mtcars_basic</a>
+</td>
+<td>
+<span class="listing-author"></span>
+</td>
+</tr>
+<tr data-index="2" data-listing-file-modified-sort="1681955894053" data-listing-reading-time-sort="1" data-listing-title-sort="Untitled" data-listing-filename-sort="020_CSS_play.qmd">
+<td>
+<span class="listing-date">undefined</span>
+</td>
+<td>
+<a href="./posts/020_CSS_play.html" class="title listing-title">Untitled</a>
+</td>
+<td>
+<span class="listing-author"></span>
+</td>
+</tr>
+<tr data-index="3" data-listing-file-modified-sort="1690505037894" data-listing-reading-time-sort="1" data-listing-title-sort="030_quarto_katex_html_references.qmd" data-listing-filename-sort="030_quarto_katex_html_references.qmd">
+<td>
+<span class="listing-date">undefined</span>
+</td>
+<td>
+<a href="./posts/030_quarto_katex_html_references.html" class="title listing-title">030_quarto_katex_html_references.qmd</a>
+</td>
+<td>
+<span class="listing-author"></span>
+</td>
+</tr>
+<tr data-index="4" data-categories="try-catch" data-listing-date-sort="1621666800000" data-listing-file-modified-sort="1697090297689" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-title-sort="not-zero" data-listing-filename-sort="040_not_zero.qmd">
+<td>
+<span class="listing-date">May 22, 2021</span>
+</td>
+<td>
+<a href="./posts/040_not_zero.html" class="title listing-title">not-zero</a>
+</td>
+<td>
+<span class="listing-author">jim </span>
+</td>
+</tr>
+<tr data-index="5" data-listing-date-sort="1703839191000" data-listing-file-modified-sort="1703839191629" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-title-sort="Bias-Variance Tradeoff" data-listing-filename-sort="050_bias_variance_tradeoff.qmd">
+<td>
+<span class="listing-date">Dec 29, 2023</span>
+</td>
+<td>
+<a href="./posts/050_bias_variance_tradeoff.html" class="title listing-title">Bias-Variance Tradeoff</a>
+</td>
+<td>
+<span class="listing-author"></span>
+</td>
+</tr>
+<tr data-index="6" data-listing-file-modified-sort="1690676809455" data-listing-reading-time-sort="2" data-listing-title-sort="Poisson Distribution" data-listing-filename-sort="130_poisson_distribution.qmd">
+<td>
+<span class="listing-date">undefined</span>
+</td>
+<td>
+<a href="./posts/130_poisson_distribution.html" class="title listing-title">Poisson Distribution</a>
+</td>
+<td>
+<span class="listing-author"></span>
+</td>
+</tr>
+<tr data-index="7" data-listing-date-sort="NaN" data-listing-file-modified-sort="1703841945962" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11" data-listing-title-sort="R Notes" data-listing-filename-sort="310_R_notes.qmd">
+<td>
+<span class="listing-date">Invalid Date</span>
+</td>
+<td>
+<a href="./posts/310_R_notes.html" class="title listing-title">R Notes</a>
+</td>
+<td>
+<span class="listing-author"></span>
+</td>
+</tr>
+<tr data-index="8" data-listing-date-sort="1703923200000" data-listing-file-modified-sort="1704006255193" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-title-sort="410_bquote" data-listing-filename-sort="410_bquote_example.qmd">
+<td>
+<span class="listing-date">Dec 30, 2023</span>
+</td>
+<td>
+<a href="./posts/410_bquote_example.html" class="title listing-title">410_bquote</a>
+</td>
+<td>
+<span class="listing-author"></span>
+</td>
+</tr>
+<tr data-index="9" data-listing-file-modified-sort="1692927788052" data-listing-reading-time-sort="1" data-listing-title-sort="Archive" data-listing-filename-sort="archive.qmd">
+<td>
+<span class="listing-date">undefined</span>
+</td>
+<td>
+<a href="./posts/archive.html" class="title listing-title">Archive</a>
+</td>
+<td>
+<span class="listing-author"></span>
+</td>
+</tr>
+<tr data-index="10" data-listing-file-modified-sort="1692927625731" data-listing-reading-time-sort="1" data-listing-title-sort="Jim_blog" data-listing-filename-sort="blog.qmd">
+<td>
+<span class="listing-date">undefined</span>
+</td>
+<td>
+<a href="./posts/blog.html" class="title listing-title">Jim_blog</a>
+</td>
+<td>
+<span class="listing-author"></span>
+</td>
+</tr>
+<tr data-index="11" data-listing-file-modified-sort="1703841171657" data-listing-reading-time-sort="1" data-listing-title-sort="About" data-listing-filename-sort="mermaid.qmd">
+<td>
+<span class="listing-date">undefined</span>
+</td>
+<td>
+<a href="./posts/mermaid.html" class="title listing-title">About</a>
+</td>
+<td>
+<span class="listing-author"></span>
+</td>
+</tr>
+<tr data-index="12" data-listing-file-modified-sort="1703841171701" data-listing-reading-time-sort="1" data-listing-title-sort="quarto-experiments" data-listing-filename-sort="scss_play.qmd">
+<td>
+<span class="listing-date">undefined</span>
+</td>
+<td>
+<a href="./posts/scss_play.html" class="title listing-title">quarto-experiments</a>
+</td>
+<td>
+<span class="listing-author"></span>
+</td>
+</tr>
+<tr data-index="13" data-categories="try-catch" data-listing-date-sort="1621666800000" data-listing-file-modified-sort="1703841171701" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-title-sort="try-catch" data-listing-filename-sort="tryCatch.qmd">
+<td>
+<span class="listing-date">May 22, 2021</span>
+</td>
+<td>
+<a href="./posts/tryCatch.html" class="title listing-title">try-catch</a>
+</td>
+<td>
+<span class="listing-author">jim </span>
+</td>
+</tr>
+</tbody>
+
+</table>
+<div class="listing-no-matching d-none">
+No matching items
+</div>
+</div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

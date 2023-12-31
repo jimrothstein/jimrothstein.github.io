@@ -1,7 +1,16 @@
-[resume](https://jimrothstein.github.com/resume.html)
-[blog5](/blog5)
-[gist](https://gist.github.com/jimrothstein/d8de0e42f8547e3a08ee7d1f1e86fb1f)
-[experiments](/quarto-experiments)
+---
+title: "About"
+image: profile.jpg
+about:
+  template: jolla
+  links:
+    - icon: linkedin
+      text: LinkedIn
+      href: https://www.linkedin.com/in/jimrothstein/
+    - icon: github
+      text: Github Repos
+      href: https://github.com/jimrothstein/
 
+---
 
-This is jim's "about.qmd"
+About this blog

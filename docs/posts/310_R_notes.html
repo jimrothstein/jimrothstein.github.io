@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>Notes To Myself - R Notes</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script><script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script><script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script><script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+<link rel="stylesheet" href="../custom.scss">
+<link rel="stylesheet" href="css_examples.css">
+</head>
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg navbar-dark "><div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Notes To Myself</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+<li class="nav-item">
+    <a class="nav-link" href="../index.html" rel="" target="">
+ <span class="menu-text">First Post</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html" rel="" target="">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://gist.github.com/jimrothstein/d8de0e42f8547e3a08ee7d1f1e86fb1f" rel="" target="">
+ <span class="menu-text">gist</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../001_tech_reading.qmd" rel="" target="">
+ <span class="menu-text">001_tech_reading</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../010_mtcars_basic.qmd" rel="" target="">
+ <span class="menu-text">010_mtcars</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="../030_quarto_katex_html_references.qmd" rel="" target="">
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="../040_not_zero.qmd" rel="" target="">
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="../130_poisson_distribution.qmd" rel="" target="">
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="../410_bquote_example.qmd" rel="" target="">
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="../050_bias_variance_tradeoff.qmd" rel="" target="">
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+<div class="quarto-navbar-tools ms-auto">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
+   
+  <ul>
+<li><a href="#metaprogramming-nse" id="toc-metaprogramming-nse" class="nav-link active" data-scroll-target="#metaprogramming-nse"><span class="header-section-number">0.1</span> Metaprogramming, NSE</a></li>
+  <li><a href="#create-a-call" id="toc-create-a-call" class="nav-link" data-scroll-target="#create-a-call"><span class="header-section-number">0.2</span> create a call</a></li>
+  <li>
+<a href="#nse-non-standard-evaluation" id="toc-nse-non-standard-evaluation" class="nav-link" data-scroll-target="#nse-non-standard-evaluation"><span class="header-section-number">1</span> NSE, Non-Standard Evaluation</a>
+  <ul class="collapse">
+<li><a href="#string-interpolation" id="toc-string-interpolation" class="nav-link" data-scroll-target="#string-interpolation"><span class="header-section-number">1.1</span> String Interpolation</a></li>
+  <li><a href="#symbol" id="toc-symbol" class="nav-link" data-scroll-target="#symbol"><span class="header-section-number">1.2</span> Symbol</a></li>
+  </ul>
+</li>
+  <li><a href="#tidy-evaluation" id="toc-tidy-evaluation" class="nav-link" data-scroll-target="#tidy-evaluation"><span class="header-section-number">2</span> Tidy Evaluation</a></li>
+  <li><a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions"><span class="header-section-number">3</span> Questions</a></li>
+  </ul></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title">R Notes</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">Invalid Date</p>
+    </div>
+  </div>
+  
+    <div>
+    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">Invalid Date</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+</header><p>CHECK DATE, think this is older copy (today: date, but copied from quarto_experiments)</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>All R, math, statistics notes here.</p>
+</div>
+</div>
+<!--
+TODO pdf - fix \gteqq
+
+  pdf: 
+    toc: false
+    include-in-header: 
+      text: |
+        \usepackage[top=.5in, bottom=.5in, left=.7in, right=.5in]{geometry}
+        \usepackage{amsmath,amssymb,amstext,amsfonts}
+        \usepackage{lipsum}
+-->
+<hr>
+<!--
+file <- "/home/jim/code/docs/R_DEFINITIONS_AND_EXAMPLES.qmd"
+
+PURPOSE:    R Definitions Plus Code Examples
+
+      :!quarto render %
+--><pre><code>{{&lt; include _future_work.qmd &gt;}}
+</code></pre>
+<p>–&gt; ### Environemnts, Namespacds - conflicted package.</p>
+<section id="metaprogramming-nse" class="level3" data-number="0.1"><h3 data-number="0.1" class="anchored" data-anchor-id="metaprogramming-nse">
+<span class="header-section-number">0.1</span> Metaprogramming, NSE</h3>
+<ul>
+<li><p>Hadley, Advanced R, version 1 (Expressions)</p></li>
+<li><p>Quoting/Eval: Lionel: https://rpubs.com/lionel-/programming-draft<br></p></li>
+<li><p>https://rpubs.com/lionel-/tidyeval-introduction</p></li>
+<li><p>https://rpubs.com/lionel-/tidyeval-dplyr-recipes</p></li>
+<li><p>{{}} * https://www.tidyverse.org/blog/2019/06/rlang-0-4-0/</p></li>
+<li><p>https://rpubs.com/lionel-/superstache</p></li>
+<li><p>function masking/pkgs: https://www.r-bloggers.com/2013/09/control-the-function-scope-by-the-r-package-namescope/ (using namespace to control scop)</p></li>
+<li><p>{}} - https://www.r-bloggers.com/2019/06/curly-curly-the-successor-of-bang-bang-2/</p></li>
+<li><p>env stack - https://www.r-bloggers.com/2014/12/tips-on-non-standard-evaluation-in-r/</p></li>
+<li><p>quoting, dplyr - https://www.r-bloggers.com/2019/07/bang-bang-how-to-program-with-dplyr/</p></li>
+<li><p>2012 namespace pkg, by Hadley, et al : https://cran.r-project.org/web/packages/namespace/index.html</p></li>
+<li><p>https://www.rostrum.blog/2023/03/03/getparsedata/ (parse, tokens, more advanced)</p></li>
+<li><p><strong>Examples</strong></p></li>
+<li><p>http://zevross.com/blog/2018/09/11/writing-efficient-and-streamlined-r-code-with-help-from-the-new-rlang-package/ (mostly ggplot2)</p></li>
+<li><p>Murdoch, R Journal vol 2/2 2010</p></li>
+<li><p>statisticsglob.com (several parse examples)</p></li>
+<li><p>advanced-r-solutions.rbind.io/expressions.html</p></li>
+<li><p>Tierney, codeTools ?</p></li>
+<li><p><strong>Manuals:</strong></p></li>
+<li><p>ns-load: https://stat.ethz.ch/R-manual/R-devel/library/base/html/ns-load.html</p></li>
+<li><p>getFromNamespace: https://stat.ethz.ch/R-manual/R-devel/library/utils/html/getFromNamespace.html</p></li>
+<li><p>R-exts:package-ns: https://cran.r-project.org/doc/manuals/R-exts.html#Package-namespaces</p></li>
+<li><p>R-ints 1.2 https://cran.r-project.org/doc/manuals/r-release/R-ints.html#Environments-and-variable-lookup R-Lang 2.1.3 Language Objects (calls, expressions, names)</p></li>
+<li><p><strong>stackoverflow</strong></p></li>
+<li><p>https://stackoverflow.com/questions/14988722/in-r-what-does-loaded-via-a-namespace-and-not-attached-mean</p></li>
+<li><p>{{}}https://stackoverflow.com/questions/62791997/what-is-the-embracing-operator</p></li>
+<li>
+</li><li><p><strong>Posit</strong></p></li>
+<li><p>ns, but not in package: https://community.rstudio.com/t/is-it-dangerous-to-create-a-namespace-for-functions-in-a-script-without-a-package/91141</p></li>
+</ul>
+<p>Useful? - wrapr https://winvector.github.io/wrapr/index.html</p>
+<dl>
+<dt>a term</dt>
+<dd>
+its definition
+</dd>
+</dl>
+<div style="page-break-after: always;"></div>
+<p><strong>attach</strong> - add df/list/datafile/env to search list, at a <code>pos</code> and <code>name</code> - added to R ~1988 [Add Link] - compare to <code>with</code></p>
+<p>explain process: capture unevaluated code; manipulate it; later evaluate</p>
+<ul>
+<li>defuse, substitution, quasiquotation,</li>
+<li>injection (into unevaluated expression)</li>
+<li>defuse &amp; inject are opposites</li>
+<li>embrase {{}}, tells function must first evalute the unevaluated content inside {{}}</li>
+</ul>
+<p><strong>bindings:</strong> - link between name (symbol) and an object - EX: f (name) and the definition (function(x) {…})</p>
+<p><strong>Call</strong> A call is an unevaluated function, together with arguments that are</p>
+</section><section id="create-a-call" class="level3" data-number="0.2"><h3 data-number="0.2" class="anchored" data-anchor-id="create-a-call">
+<span class="header-section-number">0.2</span> create a call</h3>
+<ul>
+<li>See: R-lang 6.5, call, sys.call v match.call</li>
+</ul>
+<div class="cell" data-hash="310_R_notes_cache/html/unnamed-chunk-1_9472d46aec58b6182beb3c45decbb4f4">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: intro_call</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">#| collapse: true</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: true</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>f  <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    x<span class="sc">^</span><span class="dv">2</span>}</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>cl  <span class="ot">&lt;-</span> <span class="fu">call</span>(<span class="st">"f"</span>, <span class="dv">3</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># display f as unevaluated f(3)</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>cl</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>....<span class="ot">-&gt;</span> <span class="fu">f</span>(<span class="dv">3</span>)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="do">##  Test for call.</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">is.call</span>(f)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>....<span class="ot">-&gt;</span> [<span class="dv">1</span>] <span class="cn">FALSE</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">is.call</span>(<span class="st">"f"</span>)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>....<span class="ot">-&gt;</span> [<span class="dv">1</span>] <span class="cn">FALSE</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">is.call</span>(cl)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>....<span class="ot">-&gt;</span> [<span class="dv">1</span>] <span class="cn">TRUE</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="do">##  To evaluate a call.</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">eval</span>(cl)</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>....<span class="ot">-&gt;</span> [<span class="dv">1</span>] <span class="dv">9</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Like symbol, expression, call is typeof ‘language’. is.call() is T only for calls. See: “in try… 4010_match_call_examples.Rmd”</p>
+<hr>
+<p><strong>Calling environment of a function</strong> To run, a function must be called. Calling environment refers to environment of the calling function. Also called parent environment. Not to be confused with a function environment. See example ?? The <code>calling function</code> is function actually making the call. f = function()g() # f is calling function</p>
+<p><strong>Currying</strong> Takes a function, partially evaluates, and returns as new function. Example: f(x,y,z) evaluated at z=a, returns g(x,y) = f(x,y,a)</p>
+<p><strong>context</strong> internal, stack of C structs, track execution (see R Internals 1.4) Allows flow control | error reporting (traceback) | sys.* to work. (except sys.status)</p>
+<p>Closures create context. internals do not. primitives only in special situations. (sys.frame, sys.call count closures from either end of context stack) TODO - do not understand.</p>
+<p>Contexts are Not counted, not reported, not on stack, and coder has no access to these functions.</p>
+<p>REF: R Internals 1.4</p>
+<p><strong>byte code</strong> “Readable” concise instructions; not machine code; no user access; use JIT compiler or interpeter</p>
+<p><strong>Deparse</strong> See <strong>parse</strong>.</p>
+<p><strong>Evaluation or execution environment</strong> In R, a function runs in an environment specific to that function. Also referred to as frame or context. This frame holds evaluation environment. The frame ends when the function completes.</p>
+<p><strong>Expression</strong> expression() takes an R object and returns expression, which a R list. Note: a <code>statement</code> is code that may do things (side effects) but does not return anything.</p>
+<p><strong>Expression v Language</strong> R expressions based on list and can be broken down further. Often these are language pieces. Lanugage use pairlists.</p>
+<p><strong>First Class</strong> - A function can also be used as an argument to another function. Example: lapply(list(), mean)</p>
+<p><strong>Frame vs Environment</strong> Frame refers to the calling stack of functions. Environment, in R, is property of function, where it looks to find non-local variables.</p>
+<p><strong>Function, properties</strong> formals(f) arguments in function defintion body(f) code environment(f) finds values of non-formal (non-local) variables where the function was created. <strong>Higher Order Function</strong> Function that takes another function as an argument and …</p>
+<p><strong>immutable</strong></p>
+<p><strong>Interactive vs.&nbsp;Non-Interactive</strong> R, or S, originally designed to be interactive, ie command and response at console. .R, .Rmd, Rscript, R CMD BATCH (TODO: some error conditions do not work in BATCH ??)</p>
+<p><strong>Lambda Calculus</strong> Instead of naming function (f(x,y) = x^2 + y^2) create abstraction. (x,y) –&gt; x^2 + y^2. Or instead of g(x) = x + 2; write lambdax.x+2. Easy to chain</p>
+<p><strong>Lexical Scope</strong> How R function finds <em>unbound</em> variables: in environment where function was created. <strong>Dynamic Scope</strong> Method to find variables in Call Stack at runtime. R uses Lexical Scope, however the R Language allows coder to select environment to evaluate variables. (REF: June Choe Slack/Nov 3 2021)</p>
+<p>Scheme added (?) Portion of code in which binding applies to a variable??</p>
+<p>In R, an “evaluator” find any “unbound symbols” (in an expression) by using variable bindings in effect when created.</p>
+<p><strong>match</strong> - match.arg - match.call - match.fun</p>
+<p><strong>namespace:</strong> REF: https://cran.r-project.org/doc/manuals/r-release/R-ints.html#Namespaces | Namespaces are environments associated with packages (and once again the base package is special and will be considered separately). A package pkg defines two environments namespace:pkg and package:pkg: it is package:pkg that can be attached and form part of the search path.</p>
+</section><section id="nse-non-standard-evaluation" class="level2" data-number="1"><h2 data-number="1" class="anchored" data-anchor-id="nse-non-standard-evaluation">
+<span class="header-section-number">1</span> NSE, Non-Standard Evaluation</h2>
+<p>Treat code as data: ability to manipulate code before evaluated.</p>
+<p><strong>operator</strong> (non-R) An operate takes a function f and returns new function g. Example: <span class="math inline">f'(x) = g(x)</span></p>
+<div class="cell" data-hash="310_R_notes_cache/html/unnamed-chunk-2_a2c990d8dd64da63f7dd73dc48743461">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># test  is this grey?</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>package:</strong></p>
+<p><strong>Pairlist</strong></p>
+<p><strong>Parent Frame of function</strong> If function g() is called inside body of function f, the g has the parent frame (aka calling environment) that is execution environment of f.&nbsp;DRAW Diagram</p>
+<p><strong>Parse</strong> Convert a string (character vector) into an R Expression (ie code), which is NOT a string. Motivation is to setup R object for manipulation <em>before</em> evaluation. Parse(*.R) removes comments. Note: after parsing, the result is NOT character(1), a string.</p>
+<p><strong>Deparse</strong> converts an R Expression to a string (character vector) .</p>
+<p>Parse &amp; Deparse are NOT? opposites. See Murdoch</p>
+<p>(latex) parse: string ==<code>&gt;</code> R expression (error if invalid) deparse: R expression ==<code>&gt;</code> string (actually: structure(expression(), scrfile)</p>
+<p><strong>options</strong> Temporary vs global vs local. Read R manual.(TODO)</p>
+<ul>
+<li><p><code>if</code>, <code>+</code>, sin, sqrt</p></li>
+<li><p>C functions</p></li>
+<li><p>SEE ADV-R Chapter 6, code: 059 (myoldcode)</p></li>
+<li><p>SEE https://nsaunders.wordpress.com/2018/06/22/idle-thoughts-lead-to-r-internals-how-to-count-function-arguments/</p></li>
+<li><p>SEE R Internals/Ch 2</p></li>
+<li><p>Do not understand at deeper level</p></li>
+</ul>
+<div class="cell" data-hash="310_R_notes_cache/html/primitive_4ae0da8683ebaab8c939d4ab16faba3f">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#   TODO</span></span>
+<span><span class="co">#   R complains about putting function in data.frame</span></span>
+<span></span>
+<span><span class="co">### check several functions</span></span>
+<span><span class="va">y</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">sin</span>, <span class="st">"sin"</span>, <span class="va">c</span>, <span class="va">switch</span>, <span class="va">typeof</span>, <span class="va">sqrt</span>, <span class="va">`if`</span>, <span class="va">`+`</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/substitute.html">quote</a></span><span class="op">(</span><span class="va">sin</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/substitute.html">quote</a></span><span class="op">(</span><span class="st">"sin"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/substitute.html">quote</a></span><span class="op">(</span><span class="va">c</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/substitute.html">quote</a></span><span class="op">(</span><span class="va">sqrt</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/substitute.html">quote</a></span><span class="op">(</span><span class="va">`if`</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/substitute.html">quote</a></span><span class="op">(</span><span class="va">`+`</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/deparse.html">deparse</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>object <span class="op">=</span> <span class="va">y</span>,</span>
+<span>           typeof <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">y</span>, <span class="va">typeof</span><span class="op">)</span>,</span>
+<span>           is.primitive <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">y</span>, <span class="va">is.primitive</span><span class="op">)</span>,</span>
+<span>           is.function <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">y</span>, <span class="va">is.function</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>R</strong> R has two parents: S, based on C, Fortran for statistics. R also has functional component, based on Scheme.</p>
+<pre><code>It is possible to abuse R, using it more like S code. (?)
+
+**Reification** Abstract idea to treat all code as "data", including functions, structures, etc. This means all such objects can be modified by code. C has. (TODO)
+
+::: {.content-visible when-format="html"}
+##  Referencial Transparency
+:::
+
+::: {.content-visible when-format="pdf"}
+
+\section{Referencial Transparency}
+:::
+
+A function f is \textbf{referencial  transparent} IF replacing x with its value
+returns same.
+
+::: {.cell hash='310_R_notes_cache/html/unnamed-chunk-4_818ea275c397116d70b14c4920ea23e3'}
+
+```{.r .cell-code}
+f = function(x) x
+x = 6
+identical(f(x), f(6))
+....-&gt; [1] TRUE</code></pre>
+<p>:::</p>
+<p>However, not all R functions have this property.</p>
+<div class="cell" data-hash="310_R_notes_cache/html/unnamed-chunk-5_9951565e6384c8354fb8adf952bce7d6">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>x<span class="ot">=</span><span class="dv">6</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">identical</span>(<span class="fu">quote</span>(x), <span class="fu">quote</span>(<span class="dv">6</span>))</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>....<span class="ot">-&gt;</span> [<span class="dv">1</span>] <span class="cn">FALSE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Referencial Semantics</strong> Changes to values are done in memory. There is no copy.</p>
+<p><strong>Substitute</strong> When used in function with formal variable, substitute stops evaluation, captures the user’s code and returns a call (ie unevaluated )</p>
+<p><strong>syntax</strong> How code looks, is { in right place, a grammar.</p>
+<p><strong>Syntax Sugar</strong> Syntax to make easier for human to express or write code efficiently.</p>
+<p><strong>Vectorize</strong> No loops, no for, no lapply. Example:</p>
+<pre><code>a &lt;- 1:10^4
+x &lt;- a[a %% 2 == 0]         # select elments of a vector</code></pre>
+<pre><code>Example:   array[i]  vs. get_array(array, i)
+Example:   `+` (1,2) vs.  1 + 2</code></pre>
+<p><strong>semantics</strong> What does the code DO?</p>
+<p><strong>String</strong> String (“5+5”) is NOT call. No such thing as evaluating a string. See 0210_ You can PARSE a string and then manipulate it. Simpler to eval a quote(5+5) to return the sum.</p>
+<section id="string-interpolation" class="level3" data-number="1.1"><h3 data-number="1.1" class="anchored" data-anchor-id="string-interpolation">
+<span class="header-section-number">1.1</span> String Interpolation</h3>
+<p>Method to substitute the value of expr into a string. Can think of it as <code>template</code> with holes. SEE: https://www.r-bloggers.com/2018/03/math-notation-for-r-plot-titles-expression-and-bquote/</p>
+<p>bquote examples SEE 410</p>
+<div class="cell" data-hash="310_R_notes_cache/html/unnamed-chunk-6_c2ede2174a3068d054101e44f80ff24b">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">=</span> <span class="fl">5</span> </span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/bquote.html">bquote</a></span><span class="op">(</span><span class="va">x</span> <span class="op">==</span> <span class="fu">.</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">....</span><span class="op">-&gt;</span> <span class="va">x</span> <span class="op">==</span> <span class="fl">5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="symbol" class="level3" data-number="1.2"><h3 data-number="1.2" class="anchored" data-anchor-id="symbol">
+<span class="header-section-number">1.2</span> Symbol</h3>
+<p><a href="https://cran.r-project.org/doc/manuals/r-release/R-lang.html#Symbol-lookup">3.1.2 Symbol lookup</a> | In this small example y is a symbol and its value is 4. A symbol is an R object too,</p>
+<div class="cell" data-hash="310_R_notes_cache/html/unnamed-chunk-7_c75a7019259c2511894f4659dceed05a">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> <span class="dv">4</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>y</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>....<span class="ot">-&gt;</span> [<span class="dv">1</span>] <span class="dv">4</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">is.symbol</span>(y)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>....<span class="ot">-&gt;</span> [<span class="dv">1</span>] <span class="cn">FALSE</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="fu">is.name</span>(y)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>....<span class="ot">-&gt;</span> [<span class="dv">1</span>] <span class="cn">FALSE</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="fu">is.object</span>(y)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>....<span class="ot">-&gt;</span> [<span class="dv">1</span>] <span class="cn">FALSE</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co"># but</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> <span class="fu">as.symbol</span>(y)</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="fu">is.symbol</span>(y)</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>....<span class="ot">-&gt;</span> [<span class="dv">1</span>] <span class="cn">TRUE</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>y</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>....<span class="ot">-&gt;</span> <span class="st">`</span><span class="at">4</span><span class="st">`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>See <strong>R Lang Ref: 2.1.3.1</strong> Symbol (aka name), usually name of R object. Use `as.name() to coerce to symbol or quote() or atoms of parse()</p>
+<pre><code>
+
+In order to manipulate symbols we need a new element in our language: the
+ability to quote a data object. Suppose we want to construct the list (a
+b). We can’t accomplish this with (list a b), because this expression
+constructs a list of the values of a and b rather than the symbols
+themselves. This issue is well known in the context of natural languages,
+where words and sentences may be regarded either as semantic entities or as
+character strings (syntactic entities). The common practice in natural
+languages is to use quotation marks to indicate that a word or a sentence
+is to be treated literally as a string of characters. For instance, the
+first letter of “John” is clearly “J.” If we tell somebody “say your name
+aloud,” we expect to hear that person’s name. However, if we tell somebody
+“say ‘your name’ aloud,” we expect to hear the words “your name.” Note that
+we are forced to nest quotation marks to describe what somebody else might
+say. We can follow this same practice to identify lists and symbols that
+are to be treated as data objects rather than as expressions to be
+evaluated. However, our format for quoting differs from that of natural
+languages in that we place a quotation mark (traditionally, the single
+quote symbol ’) only at the beginning of the object to be quoted. We can
+get away with this in Scheme syntax because we rely on blanks and
+parentheses to delimit objects. Thus, the meaning of the single quote
+character is to quote the next object. Now we can distinguish between
+symbols and their values:
+
+https://stackoverflow.com/questions/8846628/what-exactly-is-a-symbol-in-lisp-scheme</code></pre>
+</section></section><section id="tidy-evaluation" class="level2" data-number="2"><h2 data-number="2" class="anchored" data-anchor-id="tidy-evaluation">
+<span class="header-section-number">2</span> Tidy Evaluation</h2>
+<ul>
+<li>pronouns, to distinguish between objects in environment ls() .env<span class="math inline">cyl and  not associated with the df and data columns in df .data</span>cyl (df)</li>
+</ul>
+<p><strong>Variable</strong> Three kinds:<br>
+* formals,x f = function(x= … )<br>
+* local,a f = function() {a =10}<br>
+* free, unbound, global, z f = function() (print(z))</p>
+<hr>
+<section id="function" class="level4" data-number="2.0.1"><h4 data-number="2.0.1" class="anchored" data-anchor-id="function">
+<span class="header-section-number">2.0.1</span> function</h4>
+<div class="cell" data-hash="310_R_notes_cache/html/function_dc1724183615f53cb0d72a53d0e3fe6e">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>f  <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">x=</span><span class="cn">NULL</span>) {</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    x<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="fu">formals</span>(f)      <span class="do">## pairlist</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>....<span class="ot">-&gt;</span> <span class="er">$</span>x</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>....<span class="ot">-&gt;</span> <span class="cn">NULL</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="fu">body</span>(f)         <span class="do">## language, $\code{call}$</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>....<span class="ot">-&gt;</span> {</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>....<span class="ot">-&gt;</span>     x<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>....<span class="ot">-&gt;</span> }</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="fu">environment</span>(f)  <span class="do">## environment</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>....<span class="ot">-&gt;</span> <span class="er">&lt;</span>environment<span class="sc">:</span> R_GlobalEnv<span class="sc">&gt;</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="fu">args</span>(f)         <span class="do">## closure</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>....<span class="ot">-&gt;</span> <span class="cf">function</span> (<span class="at">x =</span> <span class="cn">NULL</span>) </span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>....<span class="ot">-&gt;</span> <span class="cn">NULL</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-hash="310_R_notes_cache/html/parse_a98b659b262ac72f72b923d2bb55917f">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## returns expression</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/parse.html">parse</a></span><span class="op">(</span>text<span class="op">=</span> <span class="st">'2^2'</span><span class="op">)</span></span>
+<span><span class="va">....</span><span class="op">-&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html">expression</a></span><span class="op">(</span><span class="fl">2</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">## fails, does not know a is.</span></span>
+<span><span class="co"># parse(text= '2a')</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="call" class="level4" data-number="2.0.2"><h4 data-number="2.0.2" class="anchored" data-anchor-id="call">
+<span class="header-section-number">2.0.2</span> call</h4>
+<div class="cell" data-hash="310_R_notes_cache/html/call_25befbba9807aca499eba0950c2826a2">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>f  <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">x=</span><span class="cn">NULL</span>) {</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>cl  <span class="ot">&lt;-</span> <span class="fu">call</span>(<span class="st">"f"</span>, <span class="fu">list</span>(<span class="at">x=</span><span class="dv">2</span>))</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>cl</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>....<span class="ot">-&gt;</span> <span class="fu">f</span>(<span class="fu">list</span>(<span class="at">x =</span> <span class="dv">2</span>))</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="fu">is.function</span>(cl)</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>....<span class="ot">-&gt;</span> [<span class="dv">1</span>] <span class="cn">FALSE</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="fu">is.call</span>(cl)</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>....<span class="ot">-&gt;</span> [<span class="dv">1</span>] <span class="cn">TRUE</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="do">##  Args must be evaluated, even if f is unevaluted </span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>    x  <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">call</span>(<span class="st">"f"</span>, <span class="fu">list</span>(x))</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>....<span class="ot">-&gt;</span> <span class="fu">f</span>(<span class="fu">list</span>(<span class="dv">2</span>))</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>    <span class="co">#call("f", list(x=a))   # throws error</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-hash="310_R_notes_cache/html/sub_c845eda2f830ecae005950d2cd76002f">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>res  <span class="ot">&lt;-</span> <span class="fu">substitute</span>(x<span class="sc">+</span>a) </span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>res</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>....<span class="ot">-&gt;</span> x <span class="sc">+</span> a</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">is.call</span>(res)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>....<span class="ot">-&gt;</span> [<span class="dv">1</span>] <span class="cn">TRUE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>::: #### K-nearest neighbors, K is given</p>
+<p><span class="math inline">\forall x \in X</span> , which could be any dimension , is already assigned to a region. For a new point, examine its K nearest neighbors who decide by majority vote which region <span class="math inline">x</span> belongs to. SEE: wine example SEE: Gaglow book.</p>
+</section><section id="bias-var-tradeoff." class="level4" data-number="2.0.3"><h4 data-number="2.0.3" class="anchored" data-anchor-id="bias-var-tradeoff.">
+<span class="header-section-number">2.0.3</span> Bias-Var Tradeoff.</h4>
+<p>With non-zero <code>noise</code>, of variance <span class="math inline">\sigma^{2}</span> the best approximate to <span class="math inline">f(x)</span> will always have non-zero error: Isn’t there a relation betwee E, VAR? like x and p ?</p>
+<p><span class="math display">
+Error = E(f_hat) + Var(f_hat) + \sigma^{2}
+Error \gteqq 0
+</span> SEE Berkeley Crash Course; Matloff</p>
+</section></section><section id="questions" class="level2" data-number="3"><h2 data-number="3" class="anchored" data-anchor-id="questions">
+<span class="header-section-number">3</span> Questions</h2>
+<div class="cell" data-hash="310_R_notes_cache/html/unnamed-chunk-8_4835dce9d698ad7f52c3728bf2290239">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">#   Explain how Base R finds column name</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>....<span class="ot">-&gt;</span> </span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>....<span class="ot">-&gt;</span> Attaching package<span class="sc">:</span> <span class="st">'dplyr'</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>....<span class="ot">-&gt;</span> The following objects are masked from <span class="st">'package:stats'</span><span class="sc">:</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>....<span class="ot">-&gt;</span> </span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>....<span class="ot">-&gt;</span>     filter, lag</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>....<span class="ot">-&gt;</span> The following objects are masked from <span class="st">'package:base'</span><span class="sc">:</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>....<span class="ot">-&gt;</span> </span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>....<span class="ot">-&gt;</span>     intersect, setdiff, setequal, union</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(starwars)</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>col <span class="ot">=</span> <span class="st">"hair_color"</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(starwars[, <span class="fu">eval</span>(col) ]) )</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>....<span class="ot">-&gt;</span> [<span class="dv">1</span>] <span class="dv">5</span></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(starwars[, col ]) )</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>....<span class="ot">-&gt;</span> [<span class="dv">1</span>] <span class="dv">5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
