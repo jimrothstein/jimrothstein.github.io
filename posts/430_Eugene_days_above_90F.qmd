@@ -1,0 +1,67 @@
+---
+title: "Eugene # Days Above 90"
+date: today
+format: html
+editor: source
+editor_options: 
+  chunk_output_type: console
+execute: 
+  error: true
+date-modified: today
+---
+####  REF: <https://www.extremeweatherwatch.com/cities/eugene/year-1952>  \
+###  Plot:  Number of days >= 90F  (each year)
+####  Red line is approximate average # days for 20th Century
+```{r}
+#| echo: false
+library(data.table)
+{
+s="
+year, count
+1895, 5
+1901, 6
+1905, 6
+1910, 6
+1915, 12	
+1920, 8
+1925, 10
+1930, 7
+1935, 16
+1940, 14
+1945, 20
+1952, 20
+1953, 11
+1954, 0
+1955, 7
+1960, 17
+1965, 17
+1970, 29
+1975, 9
+1980, 9
+1985, 19
+1990, 25
+1995, 16
+2000, 11
+2005, 18
+2010, 15
+2015, 29
+2020, 22
+2022, 25
+2023, 31"
+}
+x= fread(s)
+x= fread(text=s)
+```
+```{r, echo=F}
+avg = x[year %in% 1900:1999, mean(count)]
+```
+
+```{r, echo=F}
+glue::glue("20th Century Average annual number of days > 90 is {round(avg)}")
+```
+
+```{r, echo=F}
+plot(x$year, x$count, xlab="Year",  ylab="Days above 90F", pch=19,
+main="Eugene, OR, Days above 90F", sub="Is it getting hotter?")
+abline(h=avg, col="red")
+```
