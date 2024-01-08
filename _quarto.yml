@@ -23,15 +23,8 @@ website:
       -   text: gist  
           href: https://gist.github.com/jimrothstein/d8de0e42f8547e3a08ee7d1f1e86fb1f
       -   href: posts/001_tech_reading.qmd
+      -   href: 300_tech_resume.html
       
-#          text: 001_tech_reading
-#      -   href: posts/010_mtcars_basic.qmd
-#          text: 010_mtcars
-#      -   href: posts/030_quarto_katex_html_references.qmd
-#      -   href: posts/040_not_zero.qmd
-#      -   href: posts/130_poisson_distribution.qmd
-#      -   href: posts/410_bquote_example.qmd
-#      -   href: posts/050_bias_variance_tradeoff.qmd
 format:
   html:   
     code-link:  true
