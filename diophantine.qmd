@@ -1,0 +1,45 @@
+
+---
+title: skeleton.qmd
+date: last-modified
+# Quarto requires title, if want date to appear
+# ~/.config/kickstart/skeleton/skeleton.qmd
+---
+#   TAGS:   
+
+Suppose you are asked to pour 1 liter of milk into a large container.   You
+have two empty containers that hold 2 and 3 liters, respectively.  But you have no
+other measuring devices.
+
+Can you do it?
+
+(This and more can be found here:  https://maa.org/press/maa-reviews/in-code-a-mathematical-journey)
+
+Though a 'simple' problem, it's solutions hinges upon ancient Greek Diophantine
+method to find integer solutions to equations such as:
+
+```
+Ax + By = C
+A,B,C are given integers
+Find integer solutions for x,y
+```
+One key is that gcd(A,B) must divide C evenly.
+(https://math.stackexchange.com/questions/20906/how-to-find-an-integer-solution-for-general-diophantine-equation-ax-by-cz?rq=1
+
+Thus, this Diaophantine equation has no solution, because gcd(2,4)=2 and 2
+does not divide 1.
+```
+2x+4y = 1
+```
+
+What does this have to do with R?  
+
+A [recent puzzle (#414) On
+r-bloggers.com](https://www.r-bloggers.com/2024/03/r-solution-for-excel-puzzles-16/sked)
+us to find the check digit for a set of integers.   A little rewording shows this is of the form of
+a Diophantine Equation with multiple variables.
+
+
+
+
+vim:linebreak:nospell:nowrap:cul tw=78 fo=tqlnrc foldcolumn=1 cc=+1
