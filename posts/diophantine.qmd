@@ -1,6 +1,6 @@
 
 ---
-title: skeleton.qmd
+title: Diophantine
 date: last-modified
 # Quarto requires title, if want date to appear
 # ~/.config/kickstart/skeleton/skeleton.qmd
